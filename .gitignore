@@ -55,7 +55,8 @@ typings/
 .env*
 .env.development
 .env.production
-
+src/firebase.js
+firebase.js
 # gatsby files
 .cache/
 public
