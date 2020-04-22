@@ -5,12 +5,14 @@ import Layout from "../components/layout";
 import Img from "gatsby-image"
 import styled from "styled-components";
 import "typeface-pinyon-script"
+import StyledBackgroundSection from "../components/header";
 
 export default ({data}) => {
 
     const {allFirebaseData} = data;
     return (
-        <Layout pathPage={allFirebaseData.nodes[0].page}>
+        <Layout>
+            <StyledBackgroundSection pathPage={allFirebaseData.nodes[0].page}/>
             <ContainerBodyPage>
                 {console.log("data", data)}
                 {data && allFirebaseData.nodes.map(article => {

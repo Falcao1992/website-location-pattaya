@@ -5,14 +5,12 @@ import theme from "../assets/theme";
 import {ThemeProvider} from "styled-components";
 import StyledBackgroundSection from "./header";
 
-const Layout = ({pathPage, children}) => {
+const Layout = ({children}) => {
 
     return (
         <ThemeProvider theme={theme}>
-            <StyledBackgroundSection pathPage={pathPage}/>
             <div>
                 <main>{children}</main>
-                {console.log("path", pathPage)}
                 <footer>
                     © {new Date().getFullYear()}, Built with
                     {` `}
