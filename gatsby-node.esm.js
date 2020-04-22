@@ -29,8 +29,15 @@ exports.sourceNodes = async ({
             return flattenTranslations(snapshot.val());
         });
 
+    const fetchDataFirebaseBanner = await app.database().ref("/banner").once("value")
+        .then(snapshot => {
+            return flattenTranslations(snapshot.val());
+        });
 
-    for (const result of fetchDataFirebase) {
+    const allFirebaseData = fetchDataFirebase.concat(fetchDataFirebaseBanner);
+
+
+    for (const result of allFirebaseData) {
         const nodeId = createNodeId(`${result.uid}`);
         const nodeContent = JSON.stringify(result);
         const node = Object.assign({}, result, {
@@ -107,9 +114,9 @@ exports.createSchemaCustomization = ({ actions }) => {
       page: String!
       name: String
       urlImage: String!
-      articleTitle: String!
-      location: String!
-      content: String!
+      articleTitle: String
+      location: String
+      content: String
       uid: String!
     }
   `;

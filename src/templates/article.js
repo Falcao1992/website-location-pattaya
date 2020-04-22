@@ -4,12 +4,13 @@ import {Link} from 'gatsby'
 import Layout from "../components/layout";
 import Img from "gatsby-image"
 import styled from "styled-components";
+import "typeface-pinyon-script"
 
 export default ({data}) => {
 
     const {allFirebaseData} = data;
     return (
-        <Layout>
+        <Layout pathPage={allFirebaseData.nodes[0].page}>
             <ContainerBodyPage>
                 {console.log("data", data)}
                 {data && allFirebaseData.nodes.map(article => {
@@ -58,22 +59,24 @@ export const query = graphql`
 const ContainerBodyPage = styled.div`
     display: flex;
     flex-direction: column;
-    `
+    width: 80%;
+    margin: auto;
+    `;
 
 const ArticleContent = styled.div`
           padding: 5px 10px;       
           margin-bottom: 20px;
-          @media only screen and (min-width:980px) {      
-              width: 70%;
-                margin: 50px auto;
+          @media only screen and (min-width:750px) {      
+                margin: 50px 0;
                 display: flex;
-                justify-content: flex-start;            
+                justify-content: space-between;           
             }
     `;
 const ArticleBody = styled.div`
     align-self: center;
-    @media only screen and (min-width:980px) {      
-              width: 40%;                     
+    @media only screen and (min-width:750px) {      
+              width: 50%;    
+              margin-left: auto;                 
             }
     `;
 
@@ -113,10 +116,9 @@ const SeeMoreLink = styled(Link)`
     `;
 
 const ContainerImg = styled.div`
-    @media only screen and (min-width:980px) {
+    @media only screen and (min-width:750px) {
         position: relative;
-            width: 40%;
-    margin-right: auto;
+        width: 40%;
         align-self: center;                            
     }
 `;
@@ -124,9 +126,8 @@ const ContainerImg = styled.div`
 const StyledImg = styled(Img)`
     border: ${props => props.theme.color.secondary} 1px solid;
     margin-bottom: 20px;
-    @media only screen and (min-width:980px) {    
-        border: none;
-        width: 30vw;     
+    @media only screen and (min-width:750px) {    
+        border: none;  
         position: relative;
         z-index: 1;
         height: auto;

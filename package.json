@@ -27,7 +27,8 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^6.0.0",
-    "styled-components": "^5.1.0"
+    "styled-components": "^5.1.0",
+    "typeface-pinyon-script": "0.0.72"
   },
   "devDependencies": {
     "prettier": "2.0.4"
