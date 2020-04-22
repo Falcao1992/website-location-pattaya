@@ -1,4 +1,4 @@
-import {getFirebase} from "./src/firebase";
+import app from "./src/firebase";
 const path = require("path");
 
 exports.sourceNodes = async ({
@@ -24,30 +24,31 @@ exports.sourceNodes = async ({
             })
     };
 
-    const lazyApp = import('firebase/app');
-    const lazyDatabase = import('firebase/database');
+    const fetchDataFirebase =  await app.database().ref("/pagesPicturesData").once("value")
+        .then(snapshot => {
+            return flattenTranslations(snapshot.val());
+        });
 
-    await Promise.all([lazyApp, lazyDatabase]).then(([firebase]) => {
-        getFirebase(firebase).database().ref("/pagesPicturesData").once("value")
-            .then(snapshot => {
-                for (const result of flattenTranslations(snapshot.val())) {
-                    const nodeId = createNodeId(`${result.uid}`);
-                    const node = Object.assign({}, result, {
-                        id: nodeId ,
-                        originalId: result.uid,
-                        parent: null,
-                        children: [],
-                        internal: {
-                            type: "firebaseData",
-                            contentDigest: createContentDigest(result),
-                            description: "article form firebase"
-                        }
-                    });
-                    createNode(node);
-                }
-            });
 
-    })
+    for (const result of fetchDataFirebase) {
+        const nodeId = createNodeId(`${result.uid}`);
+        const nodeContent = JSON.stringify(result);
+        const node = Object.assign({}, result, {
+            id: nodeId ,
+            originalId: result.uid,
+            parent: result.uid,
+            children: [],
+            page: result.page,
+            title: result.title,
+            type:result.type,
+            internal: {
+                type: "firebaseData",
+                content: nodeContent,
+                contentDigest: createContentDigest(result)
+            }
+        });
+        createNode(node);
+    }
 };
 
 exports.createResolvers = ({ createResolvers }) => {

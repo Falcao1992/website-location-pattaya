@@ -1,22 +1,15 @@
-const config = {
-    apiKey: process.env.GATSBY_API_KEY,
-    authDomain: process.env.GATSBY_AUTH_DOMAIN,
-    databaseURL: process.env.GATSBY_DATABASE_URL,
-    projectId: process.env.GATSBY_PROJECT_ID,
-    storageBucket: process.env.GATSBY_STORAGE_BUCKET,
-    messagingSenderId: process.env.GATSBY_MESSAGING_SENDER_ID,
-    appId: process.env.GATSBY_APP_ID
-};
+import * as firebase from "firebase";
+import "firebase/auth";
 
-let firebaseInstance;
+const app = firebase.initializeApp({
+    apiKey: "AIzaSyCOj-sa7CxJHpuLFpg8-YThcNqvjvjnsAE",
+    authDomain: "location-pattaya.firebaseapp.com",
+    databaseURL: "https://location-pattaya.firebaseio.com",
+    projectId: "location-pattaya",
+    storageBucket: "location-pattaya.appspot.com",
+    messagingSenderId: "1040793840778",
+    appId: "1:1040793840778:web:b891bb1b7642cde7c29173"
+});
 
-export const getFirebase = firebase => {
-    if (firebaseInstance) {
-        return firebaseInstance
-    }
+export default app;
 
-    firebase.initializeApp(config);
-    firebaseInstance = firebase;
-
-    return firebase
-};
