@@ -6,17 +6,19 @@ import Img from "gatsby-image"
 import styled from "styled-components";
 import "typeface-pinyon-script"
 import BackgroundSection from "../components/header";
+import SEO from "../components/seo";
 
 export default ({data, pageContext}) => {
 
     const {allFirebaseData} = data;
-    console.log(pageContext)
+    console.log(pageContext.page)
     return (
         <Layout>
+            <SEO title={pageContext.page} />
             <BackgroundSection pathPage={allFirebaseData.nodes[0].page}/>
             <ContainerBodyPage>
-                {console.log("data", data)}
-                {data && allFirebaseData.nodes.map(article => {
+                {console.log("allFirebaseData", allFirebaseData)}
+                {allFirebaseData.nodes.filter(art => art.type === "article").map(article => {
                     return (
                         <ArticleContent key={article.uid}>
                         <ContainerImg>
@@ -46,6 +48,7 @@ export const query = graphql`
                 page
                 name
                 uid
+                type
                     fileFirebase {
                         childImageSharp {
                             fluid(maxWidth: 400, maxHeight: 250) {
