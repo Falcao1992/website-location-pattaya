@@ -3,7 +3,6 @@ import React from "react"
 import "./layout.css"
 import theme from "../assets/theme";
 import {ThemeProvider} from "styled-components";
-import StyledBackgroundSection from "./header";
 
 const Layout = ({children}) => {
 

@@ -5,7 +5,7 @@ import "typeface-pinyon-script"
 import BackgroundImage from 'gatsby-background-image-es5'
 import "./header.css"
 
-const BackgroundSection = ({className, pathPage}) => {
+export default ({className, pathPage}) => {
 
     const data = useStaticQuery(graphql`
         {
@@ -48,7 +48,7 @@ const BackgroundSection = ({className, pathPage}) => {
 
     return (
         <>
-            {<BackgroundImage
+            {<StyledBackgroundSection
                 Tag="section"
                 className={className}
                 fluid={handleChooseBackgroundImage()}
@@ -71,12 +71,12 @@ const BackgroundSection = ({className, pathPage}) => {
                     <strong>Pattaya</strong>
                     <p>des appartements pour vos vacances</p>
                 </Baseline>
-            </BackgroundImage>}
+            </StyledBackgroundSection>}
         </>
     )
 };
 
-const StyledBackgroundSection = styled(BackgroundSection)`
+const StyledBackgroundSection = styled(BackgroundImage)`
     color: ${props => props.theme.color.primary};
     text-transform: uppercase;
     `;
@@ -128,6 +128,3 @@ const Baseline = styled.div`
         }
     `;
 
-
-
-export default StyledBackgroundSection
