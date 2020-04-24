@@ -55,13 +55,14 @@ export default ({className, pathPage}) => {
             >
                 <TopBar>
                     <div>
-                        <Link to="/category"><MenuItem className={pathMatch("category")}>Location d'Appartements à
+                        <Link to="/"><MenuItem className={pathMatch("/")}>Location d'Appartements à
                             Pattaya</MenuItem></Link>
                     </div>
                     <nav>
                         <Link to="/apartments"><MenuItem
                             className={pathMatch("apartments")}>Appartement</MenuItem></Link>
                         <Link to="/activity"><MenuItem className={pathMatch("activity")}>Activité</MenuItem></Link>
+                        <Link to="/interest"><MenuItem className={pathMatch("interest")}>Interets</MenuItem></Link>
                         <Link to="/about"><MenuItem className={pathMatch("about")}>A Savoir</MenuItem></Link>
                         <Link to="/contact"><MenuItem className={pathMatch("contact")}>Nous contacter</MenuItem></Link>
                     </nav>
