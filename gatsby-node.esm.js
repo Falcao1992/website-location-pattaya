@@ -154,12 +154,14 @@ exports.createPages = async ({ graphql, actions }) => {
   `);
 
     firebaseData.data.allFirebaseData.distinct.forEach(namePage => {
-        createPage({
-            path: namePage,
-            component: path.resolve("./src/templates/article.js"),
-            context: {
-                page: namePage
-            }
-        });
+        if(namePage !== "contact") {
+            createPage({
+                path: namePage,
+                component: path.resolve("./src/templates/article.js"),
+                context: {
+                    page: namePage
+                }
+            });
+        }
     });
 };
