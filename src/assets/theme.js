@@ -4,7 +4,7 @@ const theme = {
         secondary: '#C89446',
     },
     font: {
-        primary: 'Roboto , serif',
+        primary: 'Roboto, serif',
         secondary: 'pinyon script , cursive'
     }
 };

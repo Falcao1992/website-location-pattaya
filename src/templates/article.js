@@ -5,17 +5,16 @@ import Layout from "../components/layout";
 import Img from "gatsby-image"
 import styled from "styled-components";
 import "typeface-pinyon-script"
-import BackgroundSection from "../components/header";
+import Header from "../components/Header";
 import SEO from "../components/seo";
+import {Divider} from "@material-ui/core";
 
 export default ({data, pageContext}) => {
-
     const {allFirebaseData} = data;
-    console.log(pageContext.page)
     return (
         <Layout>
             <SEO title={pageContext.page} />
-            <BackgroundSection pathPage={allFirebaseData.nodes[0].page}/>
+            <Header pathPage={allFirebaseData.nodes[0].page}/>
             <ContainerBodyPage>
                 {console.log("allFirebaseData", allFirebaseData)}
                 {allFirebaseData.nodes.filter(art => art.type === "article").map(article => {
@@ -31,6 +30,7 @@ export default ({data, pageContext}) => {
                                 <SeeMoreLink to={`/${article.name}`}><span>voir plus ></span></SeeMoreLink>}
                             </ArticleBody>
                         </ArticleContent>
+
                     )
                 })}
             </ContainerBodyPage>
@@ -65,7 +65,6 @@ export const query = graphql`
 const ContainerBodyPage = styled.div`
     display: flex;
     flex-direction: column;
-    width: 80%;
     margin: auto;
     `;
 
@@ -80,6 +79,10 @@ const ArticleContent = styled.div`
     `;
 const ArticleBody = styled.div`
     align-self: center;
+        p {
+            font-family: ${props => props.theme.font.primary};
+            letter-spacing: 1px;
+        }
     @media only screen and (min-width:750px) {      
               width: 50%;    
               margin-left: auto;                 
@@ -89,9 +92,9 @@ const ArticleBody = styled.div`
 const ArticleLocation = styled.h3`
         font-size: 0.9rem;
         text-transform: uppercase;
-        letter-spacing: 1px;
         line-height: 1.2;
         margin-left: 5px;
+        margin-bottom: 5px;
            span {
             text-transform: none;
             font-family: 'pinyon script' , sans-serif;

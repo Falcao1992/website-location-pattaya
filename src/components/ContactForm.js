@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import {Button, TextField, Container} from "@material-ui/core";
+import {Button, TextField } from "@material-ui/core";
 import CheckIcon from '@material-ui/icons/Check';
 import "typeface-pinyon-script"
 import app from "../firebase";
@@ -63,7 +63,8 @@ const ContactForm = () => {
     };
 
     return (
-        <Container fixed>
+        <>
+
             <TitlePageStyled>Nous Contacter :</TitlePageStyled>
             {hasBeenSent && <ToastHasBeenSent><CheckIconStyled/> Votre message à bien été envoyé !</ToastHasBeenSent>}
             <FormStyled onSubmit={handleSubmit} autoComplete="off">
@@ -156,7 +157,7 @@ const ContactForm = () => {
                 <ButtonCreate variant="contained" type="submit" color="primary"
                               aria-label="edit">Envoyer</ButtonCreate>
             </FormStyled>
-        </Container>
+        </>
     )
 };
 

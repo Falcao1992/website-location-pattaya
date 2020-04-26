@@ -1,12 +1,14 @@
 import React from "react"
 import Layout from "../components/layout"
-import StyledBackgroundHomeSection from "../components/BackgroundImage";
+import HomeCategories from "../components/HomeCategories";
 import SEO from "../components/seo"
+import Header from "../components/Header";
 
 const IndexPage = () => (
     <Layout>
         <SEO title="Home"/>
-        <StyledBackgroundHomeSection/>
+        <Header pathPage={"/"} />
+        <HomeCategories/>
     </Layout>
 );
 

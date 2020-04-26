@@ -1,4 +1,15 @@
+@import "~normalize.css";
+
 html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+/* html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -620,3 +631,4 @@ pre tt:after {
     font-size: 100%;
   }
 }
+*/
