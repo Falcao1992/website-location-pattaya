@@ -52,11 +52,11 @@ const HomeCategories = ({className}) => (
         `}
         render={data => {
             const allCategory = [
-                {fluid:data.apartmentPicture.childImageSharp.fluid, backgroundColorDescription:"#21511be3", title: "Nos Appartements", page: "apartments"},
-                {fluid:data.activityPicture.childImageSharp.fluid, backgroundColorDescription:"#e84c49", title: "Les Activitées", page: "activity"},
-                {fluid:data.welcomePicture.childImageSharp.fluid, backgroundColorDescription:"#296074", title: "A Propos", page: "/about"},
-                {fluid:data.interestPicture.childImageSharp.fluid, backgroundColorDescription:"#296074", title: "les lieux d'interets", page: "/interest"},
-                {fluid:data.contactPicture.childImageSharp.fluid, backgroundColorDescription:"#296074", title: "nous contacter", page: "/contact"},
+                {fluid:data.apartmentPicture.childImageSharp.fluid, backgroundColorDescription:"#6d1441ed", title: "Nos Appartements", page: "apartments"},
+                {fluid:data.activityPicture.childImageSharp.fluid, backgroundColorDescription:"#379cc1", title: "Les Activitées", page: "activity"},
+                {fluid:data.welcomePicture.childImageSharp.fluid, backgroundColorDescription:"#1f5831ed", title: "A Propos", page: "/about"},
+                {fluid:data.interestPicture.childImageSharp.fluid, backgroundColorDescription:"#6d1441ed", title: "les lieux d'interets", page: "/interest"},
+                {fluid:data.contactPicture.childImageSharp.fluid, backgroundColorDescription:"#379cc1", title: "nous contacter", page: "/contact"},
             ];
 
             const handleChooseBackgroundImageScroll = (img) => {
@@ -102,7 +102,7 @@ const HomeCategories = ({className}) => (
 
 const ContainerBackgroundDescription = styled.section`
     width: 100%;
-    height: 100vh;
+    height: 80vh;
     display: flex;
     flex-direction: column;
     background-color: ${props => props.backgroundColor}
@@ -135,7 +135,7 @@ const SeeMoreLink = styled(Link)`
 
 const StyledCategoryImageParallax = styled(HomeCategories)`
     width: 100%;
-    height: 63vh;
+    height: 50vh;
     background-attachment: fixed;
     background-size: cover;
     background-position: bottom;

@@ -7,7 +7,6 @@ import styled from "styled-components";
 import "typeface-pinyon-script"
 import Header from "../components/Header";
 import SEO from "../components/seo";
-import {Divider} from "@material-ui/core";
 
 export default ({data, pageContext}) => {
     const {allFirebaseData} = data;

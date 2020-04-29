@@ -183,7 +183,8 @@ const CheckIconStyled = styled(CheckIcon)`
 
 const FormStyled = styled.form`
         display: flex;
-        flex-direction: column;        
+        flex-direction: column;
+        padding: 15px;        
         input {
             margin-bottom: 15px;
         }
