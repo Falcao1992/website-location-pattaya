@@ -72,7 +72,7 @@ const HomeCategories = ({className}) => (
                                 triggerElement={`.box${index}`}
                                 classToggle={[`.box${index}`, "fade-in"]}
                                 offset={-100}
-                                indicators={false}
+                                indicators={true}
                                 reverse={false}
                             >
                             <BackgroundImage
