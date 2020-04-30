@@ -109,8 +109,8 @@ const ContainerBackgroundDescription = styled.section`
     `;
 
 const DescriptionBlock = styled.div`
-    width: 70%;
-    margin: 15px auto;
+    width: 80%;
+    margin: auto;
     color: ${props => props.theme.color.primary};
     font-family: ${props => props.theme.font.primary};
     letter-spacing: 1px;
@@ -119,7 +119,6 @@ const DescriptionBlock = styled.div`
             color: ${props => props.theme.color.secondary};
             font-size: 2rem;
             letter-spacing: 3px;
-            padding-top: 15px;
         }
     `;
 
@@ -134,7 +133,9 @@ const SeeMoreLink = styled(Link)`
     `;
 
 const StyledCategoryImageParallax = styled(HomeCategories)`
-    width: 100%;
+    border: 2px solid ${props => props.theme.color.secondary};
+    width: calc(100% - 10px);
+    margin: 10px auto;
     height: 50vh;
     background-attachment: fixed;
     background-size: cover;
