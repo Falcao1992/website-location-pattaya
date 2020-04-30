@@ -131,7 +131,7 @@ const DescriptionBlock = styled.div`
     font-family: ${props => props.theme.font.primary};
     letter-spacing: 1px;
     text-align: center;
-    background: linear-gradient(90deg,rgba(15,15,18,0.3) 0%,rgba(15, 15, 18, 0.5) 50%,rgba(15,15,18,0.8) 100%);
+    background: linear-gradient(90deg,rgba(15,15,18,0.25) 0%,rgba(15, 15, 18, 0.5) 50%,rgba(15,15,18,0.85) 100%);
     box-shadow: -10px 20px 25px 0 rgba(0,0,0,0.7);
     padding: 1.3rem;
     margin: 0 0.5rem;
@@ -157,15 +157,15 @@ const SeeMoreLink = styled(Link)`
 const StyledCategoryImageParallax = styled(HomeCategories)`
     display: flex;
     align-items: flex-end;
-    width: 100%;
     height: 80vh;
-    background-attachment: fixed;
+    background-attachment: initial;
     background-size: cover;
     background-position: bottom;
     overflow: hidden;
     padding-bottom: 1rem;
-    border-bottom: 4px solid ${props => props.theme.color.secondary};
-    transition: all 0.6s linear;
+    border-bottom: 2px solid ${props => props.theme.color.secondary};
+    position: absolute;
+    transform: translate3d(0,0,0);
     `;
 
 export default StyledCategoryImageParallax
