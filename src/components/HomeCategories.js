@@ -146,6 +146,7 @@ const StyledCategoryImageParallax = styled(HomeCategories)`
     overflow: hidden;
     padding-bottom: 0.5rem;
     border-bottom: 4px solid ${props => props.theme.color.secondary}
+    transition: all 0.6s linear;
 `;
 
 export default StyledCategoryImageParallax
