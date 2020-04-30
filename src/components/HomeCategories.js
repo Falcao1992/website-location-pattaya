@@ -116,6 +116,7 @@ const DescriptionBlock = styled.div`
     background: linear-gradient(90deg,rgba(2,0,36,0.35) 0%,rgba(15, 15, 18, 0.5) 50%,rgba(2,0,36,0.35) 100%);
     padding: 1.3rem;
     margin: 0 0.5rem;
+    width: calc(100% - 1rem);
         h2 {
             font-family: ${props => props.theme.font.secondary};
             color: ${props => props.theme.color.secondary};
