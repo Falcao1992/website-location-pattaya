@@ -72,7 +72,7 @@ const HomeCategories = ({className}) => (
                                 triggerElement={`.box${index}`}
                                 classToggle={[`.box${index}`, "fade-in"]}
                                 offset={-100}
-                                indicators={true}
+                                indicators={false}
                                 reverse={false}
                             >
                             <BackgroundImage
@@ -113,7 +113,8 @@ const DescriptionBlock = styled.div`
     font-family: ${props => props.theme.font.primary};
     letter-spacing: 1px;
     text-align: center;
-    background: linear-gradient(90deg,rgba(2,0,36,0.35) 0%,rgba(15, 15, 18, 0.5) 50%,rgba(2,0,36,0.35) 100%);
+    background: linear-gradient(90deg,rgba(15,15,18,0.25) 0%,rgba(15, 15, 18, 0.5) 50%,rgba(15,15,18,0.85) 100%);
+    box-shadow: -20px 25px 80px 0 rgba(0,0,0,0.75);
     padding: 1.3rem;
     margin: 0 0.5rem;
     width: calc(100% - 1rem);
@@ -144,7 +145,7 @@ const StyledCategoryImageParallax = styled(HomeCategories)`
     height: 70vh;
     background-attachment: fixed;
     background-size: cover;
-    background-position: bottom;
+    //background-position: bottom;
     overflow: hidden;
     padding-bottom: 0.5rem;
 `;
