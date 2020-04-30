@@ -75,20 +75,19 @@ const HomeCategories = ({className}) => (
                                 indicators={false}
                                 reverse={false}
                             >
-                            <ContainerBackgroundDescription
-                                backgroundColor={category.backgroundColorDescription}>
                             <BackgroundImage
-                                Tag="div"
+                                Tag="section"
                                 className={className}
                                 fluid={handleChooseBackgroundImageScroll(category.fluid)}
                                 backgroundColor={`#040e18`}
-                            />
+                            >
                                 <DescriptionBlock className={`box${index}`}>
                                     <h2>{category.title}</h2>
-                                    <p>Note that the development build is not optimized.Note that the development build is not optimized.</p>
+                                    <p>Note that the development build is not optimized.Note that the development build is not optimizedNote thabuild is not optimizedNote that the development builptimized.</p>
                                     <SeeMoreLink to={`/${category.page}`}><span>voir plus ></span></SeeMoreLink>
                                 </DescriptionBlock>
-                            </ContainerBackgroundDescription>
+                            </BackgroundImage>
+
                             </Scene>
                             </Controller>
                         )
@@ -109,11 +108,14 @@ const ContainerBackgroundDescription = styled.section`
     `;
 
 const DescriptionBlock = styled.div`
-    width: 80%;
-    margin: auto;
+    position: absolute; /* postulat de départ */
     color: ${props => props.theme.color.primary};
     font-family: ${props => props.theme.font.primary};
     letter-spacing: 1px;
+    text-align: center;
+    background: linear-gradient(90deg,rgba(2,0,36,0.35) 0%,rgba(15, 15, 18, 0.5) 50%,rgba(2,0,36,0.35) 100%);
+    padding: 1.3rem;
+    margin: 0 0.5rem;
         h2 {
             font-family: ${props => props.theme.font.secondary};
             color: ${props => props.theme.color.secondary};
@@ -133,14 +135,17 @@ const SeeMoreLink = styled(Link)`
     `;
 
 const StyledCategoryImageParallax = styled(HomeCategories)`
+    display: flex;
+    align-items: flex-end;
     border: 2px solid ${props => props.theme.color.secondary};
     width: calc(100% - 10px);
-    margin: 10px auto;
-    height: 50vh;
+    margin: 5px auto;
+    height: 70vh;
     background-attachment: fixed;
     background-size: cover;
     background-position: bottom;
     overflow: hidden;
+    padding-bottom: 0.5rem;
 `;
 
 export default StyledCategoryImageParallax
