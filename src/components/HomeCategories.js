@@ -111,7 +111,7 @@ const HomeCategories = ({className}) => (
                                             <p>Note that the development build is not optimized.Note that the
                                                 development build is not optimizedNote thabuild is not optimizedNote
                                                 that the development builptimized.</p>
-                                            <SeeMoreLink to={`/${category.page}`}><span>voir plus ></span></SeeMoreLink>
+                                            <SeeMoreLink to={`${category.page}`}><span>voir plus ></span></SeeMoreLink>
                                         </DescriptionBlock>
                                     </BackgroundImage>
                                 </Scene>
@@ -163,7 +163,7 @@ const StyledCategoryImageParallax = styled(HomeCategories)`
     background-position: bottom;
     overflow: hidden;
     padding-bottom: 1rem;
-    border-bottom: 2px solid ${props => props.theme.color.secondary};
+    border-top: 2px solid ${props => props.theme.color.secondary};
     position: absolute;
     transform: translate3d(0,0,0);
     `;

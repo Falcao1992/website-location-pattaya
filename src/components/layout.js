@@ -3,18 +3,17 @@ import React from "react"
 import "./layout.css"
 import theme from "../assets/theme";
 import {ThemeProvider} from "styled-components";
+import {Footer} from "./Footer";
 
-const Layout = ({children}) => {
+
+
+const Layout = (props) => {
 
     return (
         <ThemeProvider theme={theme}>
             <div>
-                <main>{children}</main>
-                <footer>
-                    © {new Date().getFullYear()}, Built with
-                    {` `}
-                    <a href="https://www.gatsbyjs.org">Gatsby</a>
-                </footer>
+                <main>{props.children}</main>
+                <Footer />
             </div>
         </ThemeProvider>
     )

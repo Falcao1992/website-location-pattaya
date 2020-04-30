@@ -49,7 +49,7 @@ export default ({className, pathPage}) => {
     return (
         <>
             {<StyledBackgroundSection
-                Tag="section"
+                Tag="header"
                 className={className}
                 fluid={handleChooseBackgroundImage()}
             >
