@@ -139,15 +139,13 @@ const SeeMoreLink = styled(Link)`
 const StyledCategoryImageParallax = styled(HomeCategories)`
     display: flex;
     align-items: flex-end;
-    border: 2px solid ${props => props.theme.color.secondary};
-    width: calc(100% - 10px);
-    margin: 5px auto;
-    height: 70vh;
+    height: 80vh;
     background-attachment: fixed;
     background-size: cover;
-    //background-position: bottom;
+    background-position: center;
     overflow: hidden;
     padding-bottom: 0.5rem;
+    border-bottom: 4px solid ${props => props.theme.color.secondary}
 `;
 
 export default StyledCategoryImageParallax
