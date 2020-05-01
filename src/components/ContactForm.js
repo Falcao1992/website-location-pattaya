@@ -18,6 +18,7 @@ const ContactForm = () => {
         message: "",
         read: "false",
         key: "",
+        dateMessage: ""
     };
     const [formData, setFormData] = useState(data);
     const [hasBeenSent, setHasBeenSent] = useState(false);
@@ -32,6 +33,7 @@ const ContactForm = () => {
 
     const sendData = () => {
         let newPostKey = app.database().ref("contactMessage").push().key;
+        formData.dateMessage = Date.now();
         formData.key = newPostKey;
             app.database().ref(`contactMessage`).update({
             [newPostKey]: formData

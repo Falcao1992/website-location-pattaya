@@ -31,7 +31,6 @@ export default ({className, pathPage}) => {
     `);
 
     const allImagesDataBanner = data.allImageSharp.edges;
-
     const handleChooseBackgroundImage = () => {
         if (pathPage === "/") {
              pathPage = "category"
