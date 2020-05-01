@@ -29,7 +29,6 @@ export default ({data, pageContext}) => {
                                 <SeeMoreLink to={`/${article.name}`}><span>voir plus ></span></SeeMoreLink>}
                             </ArticleBody>
                         </ArticleContent>
-
                     )
                 })}
             </ContainerBodyPage>

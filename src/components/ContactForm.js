@@ -17,12 +17,13 @@ const ContactForm = () => {
         dateEndReservation: "",
         message: "",
         read: "false",
+        key: "",
     };
     const [formData, setFormData] = useState(data);
     const [hasBeenSent, setHasBeenSent] = useState(false);
     const [missingField, setMissingField] = useState(false);
 
-    const {name, mail, phoneNumber, numberPeople, dateStartReservation, dateEndReservation, message, firstName} = formData;
+    const {name, mail, phoneNumber, numberPeople, dateStartReservation, dateEndReservation, message, firstName } = formData;
 
     const handleChange = (e) => {
         setFormData({...formData, [e.target.id]: e.target.value});
@@ -30,8 +31,9 @@ const ContactForm = () => {
 
 
     const sendData = () => {
-        const newPostKey = app.database().ref("contactMessage").push().key;
-        app.database().ref(`contactMessage`).update({
+        let newPostKey = app.database().ref("contactMessage").push().key;
+        formData.key = newPostKey;
+            app.database().ref(`contactMessage`).update({
             [newPostKey]: formData
         });
         setHasBeenSent(true);
