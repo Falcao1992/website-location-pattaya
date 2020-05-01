@@ -15,7 +15,8 @@ const ContactForm = () => {
         numberPeople: "",
         dateStartReservation: "",
         dateEndReservation: "",
-        message: ""
+        message: "",
+        read: "false",
     };
     const [formData, setFormData] = useState(data);
     const [hasBeenSent, setHasBeenSent] = useState(false);
