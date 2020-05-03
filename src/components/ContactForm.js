@@ -193,6 +193,10 @@ const FormStyled = styled.form`
         input {
             margin-bottom: 15px;
         }
+        @media only screen and (min-width:750px) {
+            width: 70%;
+            margin: auto;       
+        }
         `;
 
 const CorrectField = styled.small`

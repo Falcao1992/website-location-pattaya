@@ -15,14 +15,15 @@ export default ({data, pageContext}) => {
             <SEO title={pageContext.page} />
             <Header pathPage={allFirebaseData.nodes[0].page}/>
             <ContainerBodyPage>
-                {console.log("allFirebaseData", allFirebaseData)}
-                {allFirebaseData.nodes.filter(art => art.type === "article").map(article => {
+                {allFirebaseData.nodes.filter(art => art.type === "article").map((article, index) => {
                     return (
-                        <ArticleContent key={article.uid}>
-                        <ContainerImg>
-                            <StyledImg fluid={article.fileFirebase.childImageSharp.fluid}/>
+                        <ArticleContent position={index%2 === 0 ? "left" : "right"} key={article.uid}>
+                        <ContainerImg position={index%2 === 0 ? "left" : "right"}>
+                            <a href={article.urlImage} target="_blank" rel="noopener noreferrer">
+                            <StyledImg position={index%2 === 0 ? "left" : "right"} fluid={article.fileFirebase.childImageSharp.fluid}/>
+                            </a>
                         </ContainerImg>
-                            <ArticleBody>
+                            <ArticleBody position={index%2 === 0 ? "left" : "right"}>
                                 <ArticleLocation><span>{article.articleTitle}</span>{article.location}</ArticleLocation>
                                 <p>{article.content}</p>
                                 {article.page === "home" &&
@@ -47,6 +48,7 @@ export const query = graphql`
                 name
                 uid
                 type
+                urlImage
                     fileFirebase {
                         childImageSharp {
                             fluid(maxWidth: 400, maxHeight: 250) {
@@ -67,12 +69,13 @@ const ContainerBodyPage = styled.div`
     `;
 
 const ArticleContent = styled.div`
-          padding: 5px 10px;       
+          padding: 1rem 2rem;       
           margin-bottom: 20px;
           @media only screen and (min-width:750px) {      
-                margin: 50px 0;
                 display: flex;
-                justify-content: space-between;           
+                justify-content: space-between;
+                width: 90%;
+                margin: 4rem auto;                                                     
             }
     `;
 const ArticleBody = styled.div`
@@ -82,8 +85,11 @@ const ArticleBody = styled.div`
             letter-spacing: 1px;
         }
     @media only screen and (min-width:750px) {      
-              width: 50%;    
-              margin-left: auto;                 
+              width: 50%;
+              align-self: center;
+              background: ${props => props.position === "right" ? "linear-gradient(90deg,#c89446a8 0%,#c8944659 50%,#c894461f 100%)" : "linear-gradient(90deg,#c894461f 0%,#c8944659 50%,#c89446a8 100%)" };
+              box-shadow: ${props => props.position === "right" ? "-6px 15px 25px 0 rgba(0,0,0,0.3)" : "6px 15px 25px 0 rgba(0,0,0,0.3)"};         
+              padding: 1rem;                   
             }
     `;
 
@@ -126,7 +132,13 @@ const ContainerImg = styled.div`
     @media only screen and (min-width:750px) {
         position: relative;
         width: 40%;
-        align-self: center;                            
+        align-self: center;
+        order: ${props => props.position === "right" ? 1 : 0};
+        transition: transform 1s ease-in-out;
+        
+        &:hover {
+        transform: scale(1.1);
+        }                        
     }
 `;
 
@@ -136,7 +148,6 @@ const StyledImg = styled(Img)`
     @media only screen and (min-width:750px) {    
         border: none;  
         position: relative;
-        z-index: 1;
         height: auto;
         overflow: visible !important;
         &::before {
@@ -145,7 +156,7 @@ const StyledImg = styled(Img)`
             width: 100%;
             height: 100%;
             top: -30px;
-            left: -30px;
+            left: ${props => props.position === "right" ? "30px" : "-30px"};
             position: absolute;
             z-index: -0;
         }     
