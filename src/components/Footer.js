@@ -25,7 +25,8 @@ const FooterContentStyled = styled.div`
     background-color: #000000eb;
     padding: 1rem;
     display: flex;
-    flex-direction: column;      
+    flex-direction: column;
+    border-top: 2px solid ${props => props.theme.color.secondary};      
     `;
 
 const FooterLinkStyled = styled.div`

@@ -111,7 +111,7 @@ const HomeCategories = ({className}) => (
                                             <p>Note that the development build is not optimized.Note that the
                                                 development build is not optimizedNote thabuild is not optimizedNote
                                                 that the development builptimized.</p>
-                                            <SeeMoreLink to={`${category.page}`}><span>voir plus ></span></SeeMoreLink>
+                                            <SeeMoreLink to={`/${category.page}`}><span>voir plus ></span></SeeMoreLink>
                                         </DescriptionBlock>
                                     </BackgroundImage>
                                 </Scene>
@@ -126,7 +126,8 @@ const HomeCategories = ({className}) => (
 
 
 const DescriptionBlock = styled.div`
-    position: absolute; /* postulat de départ */
+    width: 60%;
+    position: absolute;
     color: ${props => props.theme.color.primary};
     font-family: ${props => props.theme.font.primary};
     letter-spacing: 1px;
@@ -135,7 +136,9 @@ const DescriptionBlock = styled.div`
     box-shadow: -10px 20px 25px 0 rgba(0,0,0,0.7);
     padding: 1.3rem;
     margin: 0 0.5rem;
-    width: calc(100% - 1rem);
+    top: 50%; 
+    left: 50%; /* à 50%/50% du parent référent */
+    transform: translate(-50%, -50%);
         h2 {
             font-family: ${props => props.theme.font.secondary};
             color: ${props => props.theme.color.secondary};
@@ -157,8 +160,7 @@ const SeeMoreLink = styled(Link)`
 const StyledCategoryImageParallax = styled(HomeCategories)`
     display: flex;
     align-items: flex-end;
-    height: 80vh;
-    background-attachment: initial;
+    height: 85vh;
     background-size: cover;
     background-position: bottom;
     overflow: hidden;
@@ -166,6 +168,12 @@ const StyledCategoryImageParallax = styled(HomeCategories)`
     border-top: 2px solid ${props => props.theme.color.secondary};
     position: absolute;
     transform: translate3d(0,0,0);
+    @media only screen and (min-width:750px) {
+        &:before {
+            background-attachment: fixed;
+            opacity: 1;
+        }
+    }
     `;
 
 export default StyledCategoryImageParallax
