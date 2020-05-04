@@ -1,6 +1,5 @@
 import React from "react";
 import {graphql} from "gatsby";
-import {Link} from 'gatsby'
 import Layout from "../components/layout";
 import Img from "gatsby-image"
 import styled from "styled-components";
@@ -32,6 +31,7 @@ export default ({data, pageContext}) => {
             <ContainerBodyPage>
                 <TitleStyled>{translatePageName(allFirebaseData.nodes[0].page)} :</TitleStyled>
                 {allFirebaseData.nodes.filter(art => art.type === "article").map((article, index) => {
+                    console.log(article.source)
                     return (
                         <ArticleContent position={index%2 === 0 ? "left" : "right"} key={article.uid}>
                         <ContainerImg position={index%2 === 0 ? "left" : "right"}>
@@ -42,8 +42,7 @@ export default ({data, pageContext}) => {
                             <ArticleBody position={index%2 === 0 ? "left" : "right"}>
                                 <ArticleLocation><span>{article.articleTitle}</span>{article.location}</ArticleLocation>
                                 <p>{article.content}</p>
-                                {article.page === "home" &&
-                                <SeeMoreLink to={`/${article.name}`}><span>voir plus ></span></SeeMoreLink>}
+                                {( article.source && article.source !== "none")  && <SourceLink href={article.source} target="_blank" rel="noopener noreferrer"><span>Voir la source</span></SourceLink>}
                             </ArticleBody>
                         </ArticleContent>
                     )
@@ -60,6 +59,7 @@ export const query = graphql`
                 articleTitle
                 location
                 content
+                source
                 page
                 name
                 uid
@@ -142,10 +142,12 @@ const ArticleLocation = styled.h3`
         }  
     `;
 
-const SeeMoreLink = styled(Link)`
+
+const SourceLink = styled.a`
         text-decoration: none;
             span {
                 color: ${props => props.theme.color.secondary};
+                font-size: 1.2rem;
                 &:hover {
                     text-decoration: underline;
                 }
@@ -158,7 +160,7 @@ const ContainerImg = styled.div`
         width: 40%;
         align-self: center;
         order: ${props => props.position === "right" ? 1 : 0};
-        transition: transform .7s ease-in-out;
+        transition: transform .7s ease-in-out .7s;
         
         &:hover {
         transform: scale(1.05);

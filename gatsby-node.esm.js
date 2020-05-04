@@ -115,6 +115,11 @@ exports.createResolvers = ({ createResolvers }) => {
                     return source.content
                 }
             },
+            source: {
+                resolve: sources => {
+                    return sources.source
+                }
+            },
             uid: {
                 resolve: source => {
                     return source.uid
@@ -136,6 +141,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       articleTitle: String
       location: String
       content: String
+      source: String
       uid: String!
     }
   `;
