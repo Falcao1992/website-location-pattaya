@@ -9,10 +9,8 @@ const Layout = (props) => {
 
     return (
         <ThemeProvider theme={theme}>
-            <div>
                 <main>{props.children}</main>
                 <Footer />
-            </div>
         </ThemeProvider>
     )
 };

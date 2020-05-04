@@ -69,7 +69,6 @@ const ContactForm = () => {
 
     return (
         <>
-
             <TitlePageStyled>Nous Contacter :</TitlePageStyled>
             {hasBeenSent && <ToastHasBeenSent><CheckIconStyled/> Votre message à bien été envoyé !</ToastHasBeenSent>}
             <FormStyled onSubmit={handleSubmit} autoComplete="off">
