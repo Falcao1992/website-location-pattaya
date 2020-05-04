@@ -127,7 +127,7 @@ const HomeCategories = ({className}) => (
 
 
 const DescriptionBlock = styled.div`
-    width: 60%;
+    width: 80%;
     position: absolute;
     color: ${props => props.theme.color.primary};
     font-family: ${props => props.theme.font.primary};
@@ -139,7 +139,7 @@ const DescriptionBlock = styled.div`
     margin: 0 0.5rem;
     top: 50%; 
     left: 50%; /* à 50%/50% du parent référent */
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -10%);
         h2 {
             font-family: ${props => props.theme.font.secondary};
             color: ${props => props.theme.color.secondary};

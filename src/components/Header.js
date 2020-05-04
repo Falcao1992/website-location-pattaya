@@ -33,9 +33,9 @@ export default ({className, pathPage}) => {
     const allImagesDataBanner = data.allImageSharp.edges;
     const handleChooseBackgroundImage = () => {
         if (pathPage === "/") {
-             pathPage = "category"
+            pathPage = "category"
         }
-        if(allImagesDataBanner.length < 1) {
+        if (allImagesDataBanner.length < 1) {
             return <p>site en maintenance</p>
         }
         const imageFilter = allImagesDataBanner.filter(imageFilter => imageFilter.node.parent.parent.type === "banner" && imageFilter.node.parent.parent.page === pathPage);
@@ -46,7 +46,7 @@ export default ({className, pathPage}) => {
         if (pathPage === "/") {
             pathPage = "category"
         }
-        if(allImagesDataBanner.length < 1) {
+        if (allImagesDataBanner.length < 1) {
             return <p>site en maintenance</p>
         }
         const imageFilter = allImagesDataBanner.filter(imageFilter => imageFilter.node.parent.parent.type === "banner" && imageFilter.node.parent.parent.page === pathPage);
@@ -60,7 +60,6 @@ export default ({className, pathPage}) => {
     };
 
 
-
     return (
         <>
             {<StyledBackgroundSection
@@ -72,8 +71,20 @@ export default ({className, pathPage}) => {
                 <TopBar>
 
                     <NavStyled>
-                        <Link to="/"><MenuItem className={pathMatch("category")}>Location d'Appartements à Pattaya</MenuItem></Link>
-                        <Link to="/apartments"><MenuItem className={pathMatch("apartments")}>Appartement</MenuItem></Link>
+                        <Link to="/">
+                            {pathPage === "category"
+                                ?
+
+                                <MenuItemH1 className={pathMatch("category")}>Location d'Appartements à
+                                    Pattaya</MenuItemH1>
+
+                                :
+                                <MenuItem className={pathMatch("category")}>Location d'Appartements à Pattaya</MenuItem>
+                            }
+
+                        </Link>
+                        <Link to="/apartments"><MenuItem
+                            className={pathMatch("apartments")}>Appartement</MenuItem></Link>
                         <Link to="/activity"><MenuItem className={pathMatch("activity")}>Activité</MenuItem></Link>
                         <Link to="/interest"><MenuItem className={pathMatch("interest")}>Interets</MenuItem></Link>
                         <Link to="/about"><MenuItem className={pathMatch("about")}>A Savoir</MenuItem></Link>
@@ -119,6 +130,18 @@ const MenuItem = styled.span`
         &:hover {
           color: ${props => props.theme.color.secondary};
         }
+    `;
+const MenuItemH1 = styled.h1`
+    font-size: 1.2rem;
+    display: inline-block;
+    margin: 0 15px;
+    color: ${props => props.theme.color.primary};
+    text-decoration: none;
+    transition: color .3s;
+    &:hover {
+        color: ${props => props.theme.color.secondary};
+    }
+    
     `;
 
 const Baseline = styled.div`

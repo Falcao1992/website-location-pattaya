@@ -10,11 +10,28 @@ import SEO from "../components/seo";
 
 export default ({data, pageContext}) => {
     const {allFirebaseData} = data;
+    {console.log(allFirebaseData.nodes[0])}
+
+    const translatePageName = (namePage) => {
+        if(namePage === "activity"){
+            return "Les Activités"
+        } else if (namePage === "apartments") {
+            return "Les Appartements"
+        } else if (namePage === "interest") {
+            return "Lieux d'intérêts"
+        } else if (namePage === "about") {
+            return "A Savoir"
+        } else {
+            return namePage
+        }
+    };
+
     return (
         <Layout>
-            <SEO title={pageContext.page} />
+            <SEO title={translatePageName(pageContext.page)} />
             <Header pathPage={allFirebaseData.nodes[0].page}/>
             <ContainerBodyPage>
+                <TitleStyled>{translatePageName(allFirebaseData.nodes[0].page)} :</TitleStyled>
                 {allFirebaseData.nodes.filter(art => art.type === "article").map((article, index) => {
                     return (
                         <ArticleContent position={index%2 === 0 ? "left" : "right"} key={article.uid}>
@@ -62,14 +79,22 @@ export const query = graphql`
     }
 `;
 
+const TitleStyled = styled.h1`
+    font-family: ${props => props.theme.font.secondary};
+    color: ${props => props.theme.color.secondary};
+    letter-spacing: 5px;
+    border-bottom: 1px solid ${props => props.theme.color.secondary};
+    text-align: center;
+    `;
+
 const ContainerBodyPage = styled.div`
     display: flex;
     flex-direction: column;
     margin: auto;
+    width: 90%;
     `;
 
-const ArticleContent = styled.div`
-          padding: 1rem 2rem;       
+const ArticleContent = styled.div`   
           margin-bottom: 20px;
           @media only screen and (min-width:750px) {      
                 display: flex;
