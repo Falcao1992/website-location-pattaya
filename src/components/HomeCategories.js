@@ -11,7 +11,7 @@ const HomeCategories = ({className}) => (
     <StaticQuery
         query={graphql`
         query {
-            welcomePicture: file(relativePath: { eq: "welcomePicture.jpg" }) {
+            aboutPicture: file(relativePath: { eq: "aboutPicture.jpg" }) {
                 childImageSharp {
                     fluid(quality: 90, maxWidth: 800) {
                         ...GatsbyImageSharpFluid_withWebp
@@ -56,37 +56,45 @@ const HomeCategories = ({className}) => (
                     fluid: data.apartmentPicture.childImageSharp.fluid,
                     backgroundColorDescription: "#6d1441ed",
                     title: "Nos Appartements",
-                    page: "apartments"
+                    page: "apartments",
+                    description: "L'Amazon Residence Condominium est situé à 1,2 km de la plage de Jomtien et à 2,9 km du marché flottant de Pattaya. " +
+                        "Il propose une connexion Wi-Fi gratuite et un restaurant..."
                 },
                 {
                     fluid: data.activityPicture.childImageSharp.fluid,
                     backgroundColorDescription: "#379cc1",
                     title: "Les Activitées",
-                    page: "activity"
+                    page: "activity",
+                    source: "https://www.cartoonnetworkamazone.com/",
+                    description: "Découvrez le premier parc aquatique Cartoon Network au monde, le Cartoon Network Amazone, situé au sud de Pattaya. " +
+                        "Cette immense aire de jeux aquatiques est implantée dans la magnifique région côtière de Bang Saray, avec plus de 150 attractions..."
                 },
                 {
-                    fluid: data.welcomePicture.childImageSharp.fluid,
+                    fluid: data.aboutPicture.childImageSharp.fluid,
                     backgroundColorDescription: "#1f5831ed",
                     title: "A Propos",
-                    page: "/about"
+                    page: "/about",
+                    source: "https://www.voyagethailande.fr/interdiction-cigarette-electronique-thailande",
+                    description: "A l’origine, l’interdiction de la cigarette électronique a été mise en place par le gouvernement thaïlandais pour des raisons " +
+                        "de santé publique en 2014. En effet, selon un porte-parole du gouvernement, la cigarette électronique inciterait les jeunes et les non-fumeurs à fumer..."
                 },
                 {
                     fluid: data.interestPicture.childImageSharp.fluid,
                     backgroundColorDescription: "#6d1441ed",
-                    title: "les lieux d'interets",
-                    page: "/interest"
+                    title: "Les Lieux d'interets",
+                    page: "/interest",
+                    source: "http://vivre-en-thailande.com/la-plage-des-militaires-sai-kaew-beach/13324/",
+                    description: "À une dizaine de minutes en voiture de la splendide plage de  Jomtien, se trouve Sai Kaew Beach (Hat Sai Kaew). " +
+                        "Située sur la côte est de la Thaïlande, sa signification, « sable de cristal » en dit déjà long sur sa splendeur... "
                 },
                 {
                     fluid: data.contactPicture.childImageSharp.fluid,
                     backgroundColorDescription: "#379cc1",
-                    title: "nous contacter",
-                    page: "/contact"
+                    title: "Nous Contacter",
+                    page: "/contact",
+                    description: "N'hésitez pas pour nous contacter, nous sommes à votre disposition pour les renseignements complémentaires que vous désireriez au sujet de nos appartements à louer à Pattaya."
                 },
             ];
-
-            const handleChooseBackgroundImageScroll = (img) => {
-                return [`linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(28, 28, 28, 0.1))`, img]
-            };
 
             return (
                 <div>
@@ -103,16 +111,17 @@ const HomeCategories = ({className}) => (
                                     <BackgroundImage
                                         Tag="section"
                                         className={className}
-                                        fluid={handleChooseBackgroundImageScroll(category.fluid)}
+                                        fluid={category.fluid}
                                         backgroundColor={`#040e18`}
                                         alt={category.title}
                                     >
                                         <DescriptionBlock className={`box${index}`}>
                                             <h2>{category.title}</h2>
-                                            <p>Note that the development build is not optimized.Note that the
-                                                development build is not optimizedNote thabuild is not optimizedNote
-                                                that the development builptimized.</p>
-                                            <SeeMoreLink to={`/${category.page}`}><span>voir plus ></span></SeeMoreLink>
+                                            <p>{category.description}</p>
+                                            <BlockLink>
+                                                {category.source && <SourceLink href={category.source} target="_blank" rel="noopener noreferrer"><span>Source</span></SourceLink>}
+                                                <SeeMoreLink to={`/${category.page}`}><span>voir plus ></span></SeeMoreLink>
+                                            </BlockLink>
                                         </DescriptionBlock>
                                     </BackgroundImage>
                                 </Scene>
@@ -133,25 +142,54 @@ const DescriptionBlock = styled.div`
     font-family: ${props => props.theme.font.primary};
     letter-spacing: 1px;
     text-align: center;
-    background: linear-gradient(90deg,rgba(15,15,18,0.25) 0%,rgba(15, 15, 18, 0.5) 50%,rgba(15,15,18,0.85) 100%);
+    background: linear-gradient(90deg,rgba(15,15,18,0.35) 0%,rgba(15, 15, 18, 0.6) 50%,rgba(15,15,18,0.95) 100%);
     box-shadow: -10px 20px 25px 0 rgba(0,0,0,0.7);
-    padding: 1.3rem;
+    padding: 1rem;
     margin: 0 0.5rem;
     top: 50%; 
-    left: 50%; /* à 50%/50% du parent référent */
-    transform: translate(-50%, -10%);
+    left: 50%;
+    transform: translate(-50%, -20%);
+    transition: opacity 0.6s linear;
+    
         h2 {
             font-family: ${props => props.theme.font.secondary};
             color: ${props => props.theme.color.secondary};
-            font-size: 2rem;
-            letter-spacing: 3px;
+            font-size: 2.2rem;
+            letter-spacing: 6px;
+        }   
+        p {
+            padding: 1rem 0;
         }
+        
+    @media only screen and (min-width:750px) {
+        width: 60%;
+        &:hover {
+              opacity: 1;
+        }
+    }
     `;
+
+const BlockLink = styled.div`
+        display: flex;
+        justify-content: space-evenly;
+        `
 
 const SeeMoreLink = styled(Link)`
         text-decoration: none;
             span {
                 color: ${props => props.theme.color.secondary};
+                font-size: 1.2rem;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+    `;
+
+const SourceLink = styled.a`
+        text-decoration: none;
+            span {
+                color: ${props => props.theme.color.secondary};
+                font-size: 1.2rem;
                 &:hover {
                     text-decoration: underline;
                 }

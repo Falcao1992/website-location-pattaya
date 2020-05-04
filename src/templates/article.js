@@ -10,7 +10,6 @@ import SEO from "../components/seo";
 
 export default ({data, pageContext}) => {
     const {allFirebaseData} = data;
-    {console.log(allFirebaseData.nodes[0])}
 
     const translatePageName = (namePage) => {
         if(namePage === "activity"){
