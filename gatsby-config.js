@@ -63,9 +63,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
-        start_url: `/home`,
+        name: `Location appartements Pattaya`,
+        short_name: `Pattaya`,
+        start_url: `/`,
         background_color: `black`,
         theme_color: `black`,
         display: `minimal-ui`,
