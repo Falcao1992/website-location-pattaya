@@ -20,7 +20,7 @@ export default ({data, pageContext}) => {
                         <ArticleContent position={index%2 === 0 ? "left" : "right"} key={article.uid}>
                         <ContainerImg position={index%2 === 0 ? "left" : "right"}>
                             <a href={article.urlImage} target="_blank" rel="noopener noreferrer">
-                            <StyledImg position={index%2 === 0 ? "left" : "right"} fluid={article.fileFirebase.childImageSharp.fluid}/>
+                            <StyledImg position={index%2 === 0 ? "left" : "right"} fluid={article.fileFirebase.childImageSharp.fluid} alt={article.articleTitle}/>
                             </a>
                         </ContainerImg>
                             <ArticleBody position={index%2 === 0 ? "left" : "right"}>

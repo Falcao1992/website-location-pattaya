@@ -105,6 +105,7 @@ const HomeCategories = ({className}) => (
                                         className={className}
                                         fluid={handleChooseBackgroundImageScroll(category.fluid)}
                                         backgroundColor={`#040e18`}
+                                        alt={category.title}
                                     >
                                         <DescriptionBlock className={`box${index}`}>
                                             <h2>{category.title}</h2>
