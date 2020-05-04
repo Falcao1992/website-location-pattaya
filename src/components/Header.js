@@ -114,6 +114,7 @@ const NavStyled = styled.nav`
 const StyledBackgroundSection = styled(BackgroundImage)`
     color: ${props => props.theme.color.primary};
     text-transform: uppercase;
+    border-bottom: 1px solid ${props => props.theme.color.secondary};
     `;
 
 const TopBar = styled.div`
@@ -132,6 +133,7 @@ const MenuItem = styled.span`
         }
     `;
 const MenuItemH1 = styled.h1`
+    font-weight: 500;
     font-size: 1.2rem;
     display: inline-block;
     margin: 0 15px;

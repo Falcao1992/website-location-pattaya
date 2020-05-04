@@ -111,7 +111,7 @@ const ArticleBody = styled.div`
     @media only screen and (min-width:750px) {      
               width: 50%;
               align-self: center;
-              background: ${props => props.position === "right" ? "linear-gradient(90deg,#c89446a8 0%,#c8944659 50%,#c894461f 100%)" : "linear-gradient(90deg,#c894461f 0%,#c8944659 50%,#c89446a8 100%)" };
+              background: ${props => props.position === "right" ? "linear-gradient(90deg,rgba(200, 148, 70, 0.6) 0%,rgba(200, 148, 70, 0.3) 50%,rgba(200, 148, 70, 0.1) 100%)" : "linear-gradient(90deg,rgba(200, 148, 70, 0.1) 0%,rgba(200, 148, 70, 0.3) 50%,rgba(200, 148, 70, 0.6) 100%);" };
               box-shadow: ${props => props.position === "right" ? "-6px 15px 25px 0 rgba(0,0,0,0.3)" : "6px 15px 25px 0 rgba(0,0,0,0.3)"};         
               padding: 1rem;                   
             }
@@ -158,10 +158,10 @@ const ContainerImg = styled.div`
         width: 40%;
         align-self: center;
         order: ${props => props.position === "right" ? 1 : 0};
-        transition: transform 1s ease-in-out;
+        transition: transform .7s ease-in-out;
         
         &:hover {
-        transform: scale(1.1);
+        transform: scale(1.05);
         }                        
     }
 `;

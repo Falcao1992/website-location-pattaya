@@ -72,7 +72,7 @@ const HomeCategories = ({className}) => (
                 {
                     fluid: data.aboutPicture.childImageSharp.fluid,
                     backgroundColorDescription: "#1f5831ed",
-                    title: "A Propos",
+                    title: "A savoir",
                     page: "/about",
                     source: "https://www.voyagethailande.fr/interdiction-cigarette-electronique-thailande",
                     description: "A l’origine, l’interdiction de la cigarette électronique a été mise en place par le gouvernement thaïlandais pour des raisons " +
@@ -97,7 +97,7 @@ const HomeCategories = ({className}) => (
             ];
 
             return (
-                <div>
+                <>
                     {allCategory.map((category, index) => {
                         return (
                             <Controller key={index}>
@@ -128,7 +128,7 @@ const HomeCategories = ({className}) => (
                             </Controller>
                         )
                     })}
-                </div>
+                </>
             )
         }}
     />
@@ -172,7 +172,7 @@ const DescriptionBlock = styled.div`
 const BlockLink = styled.div`
         display: flex;
         justify-content: space-evenly;
-        `
+        `;
 
 const SeeMoreLink = styled(Link)`
         text-decoration: none;
@@ -202,15 +202,20 @@ const StyledCategoryImageParallax = styled(HomeCategories)`
     height: 85vh;
     background-size: cover;
     background-position: bottom;
-    overflow: hidden;
-    padding-bottom: 1rem;
-    border-top: 2px solid ${props => props.theme.color.secondary};
+    overflow: hidden;   
     position: absolute;
     transform: translate3d(0,0,0);
+    border-top: 2px solid #C89446;
+    
     @media only screen and (min-width:750px) {
+        margin: 4rem auto;
+        width: calc(100% - 8rem);
+        border: 2px solid ${props => props.theme.color.secondary};
+        box-shadow: -10px 20px 25px 0 rgba(0,0,0,0.7);
         &:before {
             background-attachment: fixed;
             opacity: 1;
+            
         }
     }
     `;
