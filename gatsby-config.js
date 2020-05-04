@@ -5,7 +5,7 @@ require("dotenv").config({
 module.exports = {
   siteMetadata: {
     title: `Location d'Appartements à Pattaya`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    description: `Ici vous trouverez la location pour passer pour des vacances de rêve.`,
     author: `Eduardo Lépine`,
   },
   plugins: [

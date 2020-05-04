@@ -5,8 +5,6 @@ import theme from "../assets/theme";
 import {ThemeProvider} from "styled-components";
 import {Footer} from "./Footer";
 
-
-
 const Layout = (props) => {
 
     return (
