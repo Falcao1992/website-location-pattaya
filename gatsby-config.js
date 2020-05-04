@@ -7,9 +7,11 @@ module.exports = {
     title: `Location d'Appartements à Pattaya`,
     description: `Ici vous trouverez la location pour passer pour des vacances de rêve.`,
     author: `Eduardo Lépine`,
+    siteUrl: `https://website-pattaya.netlify.app/`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-remote-images`,
       options: {
