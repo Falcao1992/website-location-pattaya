@@ -11,7 +11,7 @@ export default ({data, pageContext}) => {
     const {allFirebaseData} = data;
 
     const translatePageName = (namePage) => {
-        if(namePage === "activity"){
+        if (namePage === "activity") {
             return "Les Activités"
         } else if (namePage === "apartments") {
             return "Les Appartements"
@@ -26,23 +26,30 @@ export default ({data, pageContext}) => {
 
     return (
         <Layout>
-            <SEO title={translatePageName(pageContext.page)} />
+            <SEO title={translatePageName(pageContext.page)}/>
             <Header pathPage={allFirebaseData.nodes[0].page}/>
             <ContainerBodyPage>
                 <TitleStyled>{translatePageName(allFirebaseData.nodes[0].page)} :</TitleStyled>
                 {allFirebaseData.nodes.filter(art => art.type === "article").map((article, index) => {
                     console.log(article.source)
                     return (
-                        <ArticleContent position={index%2 === 0 ? "left" : "right"} key={article.uid}>
-                        <ContainerImg position={index%2 === 0 ? "left" : "right"}>
-                            <a href={article.urlImage} target="_blank" rel="noopener noreferrer">
-                            <StyledImg position={index%2 === 0 ? "left" : "right"} fluid={article.fileFirebase.childImageSharp.fluid} alt={article.articleTitle}/>
-                            </a>
-                        </ContainerImg>
-                            <ArticleBody position={index%2 === 0 ? "left" : "right"}>
-                                <ArticleLocation><span>{article.articleTitle}</span>{article.location}</ArticleLocation>
+                        <ArticleContent position={index % 2 === 0 ? "left" : "right"} key={article.uid}>
+                            <ContainerImg position={index % 2 === 0 ? "left" : "right"}>
+                                <a href={article.urlImage} target="_blank" rel="noopener noreferrer">
+                                    <StyledImg position={index % 2 === 0 ? "left" : "right"}
+                                               fluid={article.fileFirebase.childImageSharp.fluid}
+                                               alt={article.articleTitle}/>
+                                </a>
+                            </ContainerImg>
+                            <ArticleBody position={index % 2 === 0 ? "left" : "right"}>
+                                <div>
+                                    <ArticleTitle>{article.articleTitle}</ArticleTitle>
+                                    <ArticleLocation>{article.location}</ArticleLocation>
+                                </div>
+
                                 <p>{article.content}</p>
-                                {( article.source && article.source !== "none")  && <SourceLink href={article.source} target="_blank" rel="noopener noreferrer"><span>Voir la source</span></SourceLink>}
+                                {(article.source && article.source !== "none") &&
+                                <SourceLink href={article.source} target="_blank" rel="noopener noreferrer"><span>Voir la source</span></SourceLink>}
                             </ArticleBody>
                         </ArticleContent>
                     )
@@ -90,7 +97,7 @@ const ContainerBodyPage = styled.div`
     display: flex;
     flex-direction: column;
     margin: auto;
-    width: 90%;
+    width: 95%;
     `;
 
 const ArticleContent = styled.div`   
@@ -107,30 +114,24 @@ const ArticleBody = styled.div`
         p {
             font-family: ${props => props.theme.font.primary};
             letter-spacing: 1px;
+            padding: 1rem 0;
         }
     @media only screen and (min-width:750px) {      
               width: 50%;
               align-self: center;
-              background: ${props => props.position === "right" ? "linear-gradient(90deg,rgba(200, 148, 70, 0.6) 0%,rgba(200, 148, 70, 0.3) 50%,rgba(200, 148, 70, 0.1) 100%)" : "linear-gradient(90deg,rgba(200, 148, 70, 0.1) 0%,rgba(200, 148, 70, 0.3) 50%,rgba(200, 148, 70, 0.6) 100%);" };
+              background: ${props => props.position === "right" ? "linear-gradient(90deg,rgba(200, 148, 70, 0.6) 0%,rgba(200, 148, 70, 0.3) 50%,rgba(200, 148, 70, 0.1) 100%)" : "linear-gradient(90deg,rgba(200, 148, 70, 0.1) 0%,rgba(200, 148, 70, 0.3) 50%,rgba(200, 148, 70, 0.6) 100%);"};
               box-shadow: ${props => props.position === "right" ? "-6px 15px 25px 0 rgba(0,0,0,0.3)" : "6px 15px 25px 0 rgba(0,0,0,0.3)"};         
               padding: 1rem;                   
             }
     `;
 
-const ArticleLocation = styled.h3`
-        font-size: 0.9rem;
-        text-transform: uppercase;
-        line-height: 1.2;
-        margin-left: 5px;
-        margin-bottom: 5px;
-           span {
-            text-transform: none;
-            font-family: 'pinyon script' , sans-serif;
-            color: ${props => props.theme.color.secondary};
-            display: block;
-            font-size: 2.1rem;
-            letter-spacing: 1px;
-           }
+const ArticleTitle = styled.h3`            
+        text-transform: none;
+        font-family: 'pinyon script' , sans-serif;
+        color: ${props => props.theme.color.secondary};
+        display: block;
+        font-size: 2.1rem;
+        letter-spacing: 1px;
         &::before {
             display: block;
             content: "";
@@ -141,6 +142,14 @@ const ArticleLocation = styled.h3`
             clear: both;
         }  
     `;
+
+const ArticleLocation = styled.span`
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        line-height: 1.2;
+        margin-bottom: 5px;
+        `;
 
 
 const SourceLink = styled.a`
@@ -163,7 +172,7 @@ const ContainerImg = styled.div`
         transition: transform .7s ease-in-out .7s;
         
         &:hover {
-        transform: scale(1.05);
+        transform: scale(1.1);
         }                        
     }
 `;
