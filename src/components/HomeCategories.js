@@ -148,7 +148,7 @@ const DescriptionBlock = styled.div`
     margin: 0 0.5rem;
     top: 50%; 
     left: 50%;
-    transform: translate(-50%, -20%);
+    transform: translate(-50%, -50%);
     transition: opacity 0.6s linear;
     
         h2 {
@@ -178,7 +178,7 @@ const SeeMoreLink = styled(Link)`
         text-decoration: none;
             span {
                 color: ${props => props.theme.color.secondary};
-                font-size: 1.2rem;
+                font-size: 0.9rem;
                 &:hover {
                     text-decoration: underline;
                 }
@@ -189,7 +189,7 @@ const SourceLink = styled.a`
         text-decoration: none;
             span {
                 color: ${props => props.theme.color.secondary};
-                font-size: 1.2rem;
+                font-size: 0.9rem;
                 &:hover {
                     text-decoration: underline;
                 }

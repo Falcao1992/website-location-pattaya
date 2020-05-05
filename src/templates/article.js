@@ -97,7 +97,7 @@ const ContainerBodyPage = styled.div`
     display: flex;
     flex-direction: column;
     margin: auto;
-    width: 95%;
+    width: calc(100% - 2rem);
     `;
 
 const ArticleContent = styled.div`   
@@ -113,8 +113,8 @@ const ArticleBody = styled.div`
     align-self: center;
         p {
             font-family: ${props => props.theme.font.primary};
-            letter-spacing: 1px;
-            padding: 1rem 0;
+            padding: 1rem 0 0.3rem 0;
+            font-size: 0.9rem;
         }
     @media only screen and (min-width:750px) {      
               width: 50%;
@@ -153,14 +153,16 @@ const ArticleLocation = styled.span`
 
 
 const SourceLink = styled.a`
-        text-decoration: none;
-            span {
-                color: ${props => props.theme.color.secondary};
-                font-size: 1.2rem;
+        color: ${props => props.theme.color.secondary};                   
+        @media only screen and (min-width:750px) {
+        text-decoration: none;          
+            span {               
+                font-size: 0.9rem;
                 &:hover {
-                    text-decoration: underline;
+                text-decoration: underline;
                 }
-            }
+            }              
+        }
     `;
 
 const ContainerImg = styled.div`

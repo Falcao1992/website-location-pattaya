@@ -6,7 +6,7 @@ import Header from "../components/Header";
 
 const IndexPage = () => (
     <Layout>
-        <SEO title="Home"/>
+        <SEO title="Accueil"/>
         <Header pathPage={"/"} />
         <HomeCategories/>
     </Layout>
