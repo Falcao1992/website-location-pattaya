@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {graphql, StaticQuery, Link} from 'gatsby'
 import styled from 'styled-components'
 import BackgroundImage from 'gatsby-background-image-es5'
@@ -8,6 +8,7 @@ import "typeface-pinyon-script"
 import {Controller, Scene} from "react-scrollmagic";
 
 const HomeCategories = ({className}) => (
+
     <StaticQuery
         query={graphql`
         query {
@@ -75,8 +76,9 @@ const HomeCategories = ({className}) => (
                     title: "A savoir",
                     page: "/about",
                     source: "https://www.voyagethailande.fr/interdiction-cigarette-electronique-thailande",
-                    description: "A l’origine, l’interdiction de la cigarette électronique a été mise en place par le gouvernement thaïlandais pour des raisons " +
-                        "de santé publique en 2014. En effet, selon un porte-parole du gouvernement, la cigarette électronique inciterait les jeunes et les non-fumeurs à fumer..."
+                    description: "C’est officiel, depuis le 22 décembre 2017, l’usage de la cigarette électronique est totalement interdit " +
+                        "sur le territoire thaïlandais. Les autorités touristiques de la Thaïlande (TAT) sont claires, les thaïlandais comme " +
+                        "les voyageurs seront arrêtés s’ils vapotent dans le royaume de Siam. On vous en dit plus sur cette loi à prendre très au sérieux…"
                 },
                 {
                     fluid: data.interestPicture.childImageSharp.fluid,

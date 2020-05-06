@@ -4,12 +4,18 @@ import HomeCategories from "../components/HomeCategories";
 import SEO from "../components/seo"
 import Header from "../components/Header";
 
-const IndexPage = () => (
-    <Layout>
-        <SEO title="Accueil"/>
-        <Header pathPage={"/"} />
-        <HomeCategories/>
-    </Layout>
-);
+import Metrics from "../components/Metrics";
+
+
+const IndexPage = () => {
+    return (
+        <Layout>
+            <SEO title="Accueil"/>
+            <Header pathPage={"/"}/>
+            <Metrics/>
+            <HomeCategories/>
+        </Layout>
+    )
+};
 
 export default IndexPage
