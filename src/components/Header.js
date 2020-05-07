@@ -39,7 +39,7 @@ export default ({className, pathPage}) => {
             return <p>site en maintenance</p>
         }
         const imageFilter = allImagesDataBanner.filter(imageFilter => imageFilter.node.parent.parent.type === "banner" && imageFilter.node.parent.parent.page === pathPage);
-        return [`linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(28, 28, 28, 0.1))`, imageFilter[0].node.fluid]
+        return [`linear-gradient(180deg, rgba(0, 0, 0, 0.85), rgba(28, 28, 28, 0.2))`, imageFilter[0].node.fluid]
     };
 
     const handleChooseBackgroundImageAlt = () => {
@@ -69,7 +69,6 @@ export default ({className, pathPage}) => {
                 alt={handleChooseBackgroundImageAlt()}
             >
                 <TopBar>
-
                     <NavStyled>
                         <Link to="/">
                             {pathPage === "category"
@@ -109,6 +108,13 @@ const NavStyled = styled.nav`
             padding-bottom: 1.2rem;
             font-size: 1.2rem;
         }
+    @media only screen and (min-width:750px) {
+        flex-direction: row;
+        padding: 0.5rem 2rem;
+        & a:first-child {
+            margin-right: auto;
+        }
+    }
     `;
 
 const StyledBackgroundSection = styled(BackgroundImage)`
@@ -163,12 +169,26 @@ const Baseline = styled.div`
             display: block;
             font-size: 2.70rem;
             letter-spacing: 3px;
+            text-shadow: 5px 6px 2px #000000;
         }
         p {
             display: block;
             padding: 10px 0;
             letter-spacing: 2px;
             font-size: .7rem;
+            text-shadow: 5px 6px 2px #000000;
+        }
+        @media only screen and (min-width:750px) {
+            padding: 4rem;
+            span {
+                font-size: 4rem;
+            }
+            strong {
+                font-size: 3.7rem;
+            }          
+            p {
+                font-size: 1.4rem;
+            }
         }
     `;
 

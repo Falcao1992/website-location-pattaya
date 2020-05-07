@@ -22,7 +22,7 @@ export const Footer = () => {
 };
 
 const FooterContentStyled = styled.footer`
-    background-color: #000000eb;
+    background-color: rgb(11, 11, 11);;
     padding: 1rem;
     display: flex;
     flex-direction: column;

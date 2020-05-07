@@ -73,7 +73,7 @@ const HomeCategories = ({className}) => (
                     fluid: data.aboutPicture.childImageSharp.fluid,
                     backgroundColorDescription: "#1f5831ed",
                     title: "A savoir",
-                    page: "/about",
+                    page: "about",
                     description: "C’est officiel, depuis le 22 décembre 2017, l’usage de la cigarette électronique est totalement interdit " +
                         "sur le territoire thaïlandais. Les autorités touristiques de la Thaïlande (TAT) sont claires, les thaïlandais comme " +
                         "les voyageurs seront arrêtés s’ils vapotent dans le royaume de Siam. On vous en dit plus sur cette loi à prendre très au sérieux…"
@@ -82,7 +82,7 @@ const HomeCategories = ({className}) => (
                     fluid: data.interestPicture.childImageSharp.fluid,
                     backgroundColorDescription: "#6d1441ed",
                     title: "Les Lieux d'interets",
-                    page: "/interest",
+                    page: "interest",
                     description: "À une dizaine de minutes en voiture de la splendide plage de  Jomtien, se trouve Sai Kaew Beach (Hat Sai Kaew). " +
                         "Située sur la côte est de la Thaïlande, sa signification, « sable de cristal » en dit déjà long sur sa splendeur... "
                 },
@@ -90,7 +90,7 @@ const HomeCategories = ({className}) => (
                     fluid: data.contactPicture.childImageSharp.fluid,
                     backgroundColorDescription: "#379cc1",
                     title: "Nous Contacter",
-                    page: "/contact",
+                    page: "contact",
                     description: "N'hésitez pas pour nous contacter, nous sommes à votre disposition pour les renseignements complémentaires que vous désireriez au sujet de nos appartements à louer à Pattaya."
                 },
             ];
@@ -137,7 +137,7 @@ const DescriptionBlock = styled.div`
     color: ${props => props.theme.color.primary};
     font-family: ${props => props.theme.font.primary};
     letter-spacing: 1px;
-    background: linear-gradient(90deg,rgba(15,15,18,0.35) 0%,rgba(15, 15, 18, 0.6) 50%,rgba(15,15,18,0.95) 100%);
+    background: linear-gradient(90deg,rgba(15,15,18,0.45) 0%,rgba(15, 15, 18, 0.7) 50%,rgba(15,15,18,0.95) 100%);
     box-shadow: -10px 20px 25px 0 rgba(0,0,0,0.7);
     padding: 1rem;
     margin: 0 0.5rem;
@@ -158,6 +158,7 @@ const DescriptionBlock = styled.div`
         
     @media only screen and (min-width:750px) {
         width: 60%;
+        transform: translate(50%,-50%);
         &:hover {
               opacity: 1;
         }
@@ -179,23 +180,24 @@ const SeeMoreLink = styled(Link)`
 const StyledCategoryImageParallax = styled(HomeCategories)`
     display: flex;
     align-items: flex-end;
-    height: 85vh;
+    height: 90vh;
     background-size: cover;
     background-position: bottom;
-    overflow: hidden;   
     position: absolute;
     transform: translate3d(0,0,0);
     border-top: 2px solid #C89446;
     
-    @media only screen and (min-width:750px) {
-        margin: 4rem auto;
-        width: calc(100% - 8rem);
-        border: 2px solid ${props => props.theme.color.secondary};
+    @media only screen and (min-width:800px) {
+        margin: 7rem auto 7rem 5rem;
+        width: calc(75% - 10rem);
         box-shadow: -10px 20px 25px 0 rgba(0,0,0,0.7);
+        height: 80vh;
+        border-top: none;
+        overflow: visible;
+        
         &:before {
             background-attachment: fixed;
-            opacity: 1;
-            
+            opacity: 1;          
         }
     }
     `;
