@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {graphql, StaticQuery, Link} from 'gatsby'
 import styled from 'styled-components'
 import BackgroundImage from 'gatsby-background-image-es5'
@@ -66,7 +66,6 @@ const HomeCategories = ({className}) => (
                     backgroundColorDescription: "#379cc1",
                     title: "Les Activitées",
                     page: "activity",
-                    source: "https://www.cartoonnetworkamazone.com/",
                     description: "Découvrez le premier parc aquatique Cartoon Network au monde, le Cartoon Network Amazone, situé au sud de Pattaya. " +
                         "Cette immense aire de jeux aquatiques est implantée dans la magnifique région côtière de Bang Saray, avec plus de 150 attractions..."
                 },
@@ -75,7 +74,6 @@ const HomeCategories = ({className}) => (
                     backgroundColorDescription: "#1f5831ed",
                     title: "A savoir",
                     page: "/about",
-                    source: "https://www.voyagethailande.fr/interdiction-cigarette-electronique-thailande",
                     description: "C’est officiel, depuis le 22 décembre 2017, l’usage de la cigarette électronique est totalement interdit " +
                         "sur le territoire thaïlandais. Les autorités touristiques de la Thaïlande (TAT) sont claires, les thaïlandais comme " +
                         "les voyageurs seront arrêtés s’ils vapotent dans le royaume de Siam. On vous en dit plus sur cette loi à prendre très au sérieux…"
@@ -85,7 +83,6 @@ const HomeCategories = ({className}) => (
                     backgroundColorDescription: "#6d1441ed",
                     title: "Les Lieux d'interets",
                     page: "/interest",
-                    source: "http://vivre-en-thailande.com/la-plage-des-militaires-sai-kaew-beach/13324/",
                     description: "À une dizaine de minutes en voiture de la splendide plage de  Jomtien, se trouve Sai Kaew Beach (Hat Sai Kaew). " +
                         "Située sur la côte est de la Thaïlande, sa signification, « sable de cristal » en dit déjà long sur sa splendeur... "
                 },
@@ -120,10 +117,7 @@ const HomeCategories = ({className}) => (
                                         <DescriptionBlock className={`box${index}`}>
                                             <h2>{category.title}</h2>
                                             <p>{category.description}</p>
-                                            <BlockLink>
-                                                {category.source && <SourceLink href={category.source} target="_blank" rel="noopener noreferrer"><span>Source</span></SourceLink>}
-                                                <SeeMoreLink to={`/${category.page}`}><span>voir plus ></span></SeeMoreLink>
-                                            </BlockLink>
+                                            <SeeMoreLink to={`/${category.page}`}><span>voir plus ></span></SeeMoreLink>
                                         </DescriptionBlock>
                                     </BackgroundImage>
                                 </Scene>
@@ -143,7 +137,6 @@ const DescriptionBlock = styled.div`
     color: ${props => props.theme.color.primary};
     font-family: ${props => props.theme.font.primary};
     letter-spacing: 1px;
-    text-align: center;
     background: linear-gradient(90deg,rgba(15,15,18,0.35) 0%,rgba(15, 15, 18, 0.6) 50%,rgba(15,15,18,0.95) 100%);
     box-shadow: -10px 20px 25px 0 rgba(0,0,0,0.7);
     padding: 1rem;
@@ -156,8 +149,8 @@ const DescriptionBlock = styled.div`
         h2 {
             font-family: ${props => props.theme.font.secondary};
             color: ${props => props.theme.color.secondary};
-            font-size: 2.2rem;
-            letter-spacing: 6px;
+            font-size: 2rem;
+            letter-spacing: 3px;
         }   
         p {
             padding: 1rem 0;
@@ -171,11 +164,6 @@ const DescriptionBlock = styled.div`
     }
     `;
 
-const BlockLink = styled.div`
-        display: flex;
-        justify-content: space-evenly;
-        `;
-
 const SeeMoreLink = styled(Link)`
         text-decoration: none;
             span {
@@ -187,16 +175,6 @@ const SeeMoreLink = styled(Link)`
             }
     `;
 
-const SourceLink = styled.a`
-        text-decoration: none;
-            span {
-                color: ${props => props.theme.color.secondary};
-                font-size: 0.9rem;
-                &:hover {
-                    text-decoration: underline;
-                }
-            }
-    `;
 
 const StyledCategoryImageParallax = styled(HomeCategories)`
     display: flex;
