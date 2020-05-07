@@ -1,7 +1,7 @@
 import React from 'react'
 import {graphql, StaticQuery, Link} from 'gatsby'
 import styled from 'styled-components'
-import BackgroundImage from 'gatsby-background-image-es5'
+import Img from "gatsby-image"
 import "./HomeCategories.css"
 import "typeface-pinyon-script"
 
@@ -54,97 +54,119 @@ const HomeCategories = ({className}) => (
         render={data => {
             const allCategory = [
                 {
+                    fluid: data.interestPicture.childImageSharp.fluid,
+                    backgroundColorDescription: "#6d1441ed",
+                    title: "Les Lieux d'interets",
+                    Width: "35%",
+                    page: "interest",
+                    description: "À une dizaine de minutes en voiture de la splendide plage de Jomtien, se trouve Sai Kaew Beach (Hat Sai Kaew). "
+                },
+                {
                     fluid: data.apartmentPicture.childImageSharp.fluid,
                     backgroundColorDescription: "#6d1441ed",
                     title: "Nos Appartements",
+                    Width: "65%",
                     page: "apartments",
-                    description: "L'Amazon Residence Condominium est situé à 1,2 km de la plage de Jomtien et à 2,9 km du marché flottant de Pattaya. " +
-                        "Il propose une connexion Wi-Fi gratuite et un restaurant..."
+                    description: "L'Amazon Residence Condominium est situé à 1,2 km de la plage de Jomtien et à 2,9 km du marché flottant de Pattaya. "
                 },
                 {
                     fluid: data.activityPicture.childImageSharp.fluid,
                     backgroundColorDescription: "#379cc1",
                     title: "Les Activitées",
+                    Width: "65%",
                     page: "activity",
-                    description: "Découvrez le premier parc aquatique Cartoon Network au monde, le Cartoon Network Amazone, situé au sud de Pattaya. " +
-                        "Cette immense aire de jeux aquatiques est implantée dans la magnifique région côtière de Bang Saray, avec plus de 150 attractions..."
+                    description: "Découvrez le premier parc aquatique Cartoon Network au monde, le Cartoon Network Amazone, situé au sud de Pattaya. "
                 },
                 {
                     fluid: data.aboutPicture.childImageSharp.fluid,
                     backgroundColorDescription: "#1f5831ed",
                     title: "A savoir",
+                    Width: "35%",
                     page: "about",
-                    description: "C’est officiel, depuis le 22 décembre 2017, l’usage de la cigarette électronique est totalement interdit " +
-                        "sur le territoire thaïlandais. Les autorités touristiques de la Thaïlande (TAT) sont claires, les thaïlandais comme " +
-                        "les voyageurs seront arrêtés s’ils vapotent dans le royaume de Siam. On vous en dit plus sur cette loi à prendre très au sérieux…"
-                },
-                {
-                    fluid: data.interestPicture.childImageSharp.fluid,
-                    backgroundColorDescription: "#6d1441ed",
-                    title: "Les Lieux d'interets",
-                    page: "interest",
-                    description: "À une dizaine de minutes en voiture de la splendide plage de  Jomtien, se trouve Sai Kaew Beach (Hat Sai Kaew). " +
-                        "Située sur la côte est de la Thaïlande, sa signification, « sable de cristal » en dit déjà long sur sa splendeur... "
+                    description: "Toutes les choses importante à savoir avant de partir, comme l'interdiction de la cigarette électronique, où échanger sont argent ect…"
                 },
                 {
                     fluid: data.contactPicture.childImageSharp.fluid,
                     backgroundColorDescription: "#379cc1",
                     title: "Nous Contacter",
+                    Width: "100%",
                     page: "contact",
                     description: "N'hésitez pas pour nous contacter, nous sommes à votre disposition pour les renseignements complémentaires que vous désireriez au sujet de nos appartements à louer à Pattaya."
                 },
             ];
 
             return (
-                <>
+                <ContainerHomeCategory>
                     {allCategory.map((category, index) => {
                         return (
                             <Controller key={index}>
                                 <Scene
                                     triggerElement={`.box${index}`}
                                     classToggle={[`.box${index}`, "fade-in"]}
-                                    offset={-100}
+                                    offset={-200}
                                     indicators={false}
                                     reverse={false}
                                 >
-                                    <BackgroundImage
-                                        Tag="section"
-                                        className={className}
-                                        fluid={category.fluid}
-                                        backgroundColor={`#040e18`}
-                                        alt={category.title}
-                                    >
+                                    <ContainerCategory page={category.page} width={category.Width}>
+                                        <ImgStyled
+                                            Tag="div"
+                                            className={className}
+                                            fluid={category.fluid}
+                                            alt={category.title}
+                                        >
+
+                                        </ImgStyled>
                                         <DescriptionBlock className={`box${index}`}>
                                             <h2>{category.title}</h2>
                                             <p>{category.description}</p>
-                                            <SeeMoreLink to={`/${category.page}`}><span>voir plus ></span></SeeMoreLink>
+                                            <SeeMoreLink to={`/${category.page}`}><p>Voir plus ></p></SeeMoreLink>
                                         </DescriptionBlock>
-                                    </BackgroundImage>
+                                    </ContainerCategory>
                                 </Scene>
                             </Controller>
                         )
                     })}
-                </>
+                </ContainerHomeCategory>
             )
         }}
     />
 );
 
+const ContainerHomeCategory = styled.div`
+    @media only screen and (min-width:800px) {       
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+`;
+
+const ContainerCategory = styled.section`
+    position: relative;
+    @media only screen and (min-width:800px) {       
+        width: ${props => props.width};
+        padding: 0.5rem;   
+    }
+    `;
+
+const ImgStyled = styled(Img)`
+    display: flex;
+    align-items: flex-end;
+    
+    @media only screen and (min-width:800px) {           
+        box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+        height: 80vh;
+        overflow: visible;
+    }
+    `;
 
 const DescriptionBlock = styled.div`
-    width: 80%;
-    position: absolute;
+    position: relative;
     color: ${props => props.theme.color.primary};
     font-family: ${props => props.theme.font.primary};
     letter-spacing: 1px;
-    background: linear-gradient(90deg,rgba(15,15,18,0.45) 0%,rgba(15, 15, 18, 0.7) 50%,rgba(15,15,18,0.95) 100%);
-    box-shadow: -10px 20px 25px 0 rgba(0,0,0,0.7);
     padding: 1rem;
-    margin: 0 0.5rem;
-    top: 50%; 
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: opacity 0.6s linear;
+    box-shadow: -10px 20px 25px 0 rgba(0,0,0,0.7);
+    transition: all 0.6s linear;
     
         h2 {
             font-family: ${props => props.theme.font.secondary};
@@ -153,53 +175,43 @@ const DescriptionBlock = styled.div`
             letter-spacing: 3px;
         }   
         p {
-            padding: 1rem 0;
+            padding: 0.4rem 0;
+            color: rgb(11,11,11) 
         }
         
     @media only screen and (min-width:750px) {
-        width: 60%;
-        transform: translate(50%,-50%);
+    position: absolute;
+    padding: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    width: calc(100% - 2rem);
+    background: linear-gradient(90deg,rgba(15,15,18,0.45) 0%,rgba(15, 15, 18, 0.7) 50%,rgba(15,15,18,0.95) 100%);
         &:hover {
               opacity: 1;
+              background-color: rgb(11,11,11, 0.8);;
+        }     
+        p {
+        color: ${props => props.theme.color.primary};
         }
     }
     `;
 
 const SeeMoreLink = styled(Link)`
         text-decoration: none;
-            span {
+            p {
                 color: ${props => props.theme.color.secondary};
                 font-size: 0.9rem;
+                border: 1px solid ${props => props.theme.color.secondary} ;
+                text-align: center;
                 &:hover {
                     text-decoration: underline;
+                }
+                    
+                @media only screen and (min-width: 800px) {
+                    border: none ;
+                    text-align: left;
                 }
             }
     `;
 
-
-const StyledCategoryImageParallax = styled(HomeCategories)`
-    display: flex;
-    align-items: flex-end;
-    height: 90vh;
-    background-size: cover;
-    background-position: bottom;
-    position: absolute;
-    transform: translate3d(0,0,0);
-    border-top: 2px solid #C89446;
-    
-    @media only screen and (min-width:800px) {
-        margin: 7rem auto 7rem 5rem;
-        width: calc(75% - 10rem);
-        box-shadow: -10px 20px 25px 0 rgba(0,0,0,0.7);
-        height: 80vh;
-        border-top: none;
-        overflow: visible;
-        
-        &:before {
-            background-attachment: fixed;
-            opacity: 1;          
-        }
-    }
-    `;
-
-export default StyledCategoryImageParallax
+export default HomeCategories

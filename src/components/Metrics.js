@@ -61,8 +61,11 @@ const Metrics = () => {
 };
 
 const IconsStyled = styled.img`
-    width: 3.5rem;
+    width: 2.5rem;
     margin-bottom: 0.5rem;
+    @media only screen and (min-width: 850px) {
+        width: 3.5rem;
+    }
 `;
 
 const ContainerMetrics = styled.div`

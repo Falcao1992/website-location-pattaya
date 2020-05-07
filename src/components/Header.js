@@ -169,14 +169,14 @@ const Baseline = styled.div`
             display: block;
             font-size: 2.70rem;
             letter-spacing: 3px;
-            text-shadow: 5px 6px 2px #000000;
+            text-shadow: 3px 4px 4px #000000;
         }
         p {
             display: block;
             padding: 10px 0;
             letter-spacing: 2px;
             font-size: .7rem;
-            text-shadow: 5px 6px 2px #000000;
+            text-shadow: 3px 4px 4px #000000;
         }
         @media only screen and (min-width:750px) {
             padding: 4rem;

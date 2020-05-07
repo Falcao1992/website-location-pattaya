@@ -4,6 +4,7 @@
 }
 
 .fade-in {
+    background-color: transparent;
     opacity: 1;
 }
 

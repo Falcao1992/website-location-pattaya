@@ -31,7 +31,6 @@ export default ({data, pageContext}) => {
             <ContainerBodyPage>
                 <TitleStyled>{translatePageName(allFirebaseData.nodes[0].page)} :</TitleStyled>
                 {allFirebaseData.nodes.filter(art => art.type === "article").map((article, index) => {
-                    console.log(article.source)
                     return (
                         <ArticleContent position={index % 2 === 0 ? "left" : "right"} key={article.uid}>
                             <ContainerImg position={index % 2 === 0 ? "left" : "right"}>
