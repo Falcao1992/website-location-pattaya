@@ -3,25 +3,36 @@ import PropTypes from "prop-types"
 import {Helmet} from "react-helmet"
 import {useStaticQuery, graphql} from "gatsby"
 
-function SEO({description, lang, meta, title, image}) {
+function SEO({description, lang, meta, keywords, title}) {
 
 
-    const {site} = useStaticQuery(
+    const {site, interestPicture} = useStaticQuery(
         graphql`
-      query {
-          site {
-              siteMetadata {
-                  title
-                  description
-                  author
-              }
-          }       
-      }
-      `
+        query {
+            site {
+                siteMetadata {
+                    title
+                    description
+                    author
+                }
+            }
+            interestPicture: file(relativePath: {eq: "interestPicture.jpg"}) {
+                childImageSharp {
+                    resize(width: 1200) {
+                        src
+                        height
+                        width
+                    }
+                }
+            }       
+        }
+        `
     );
 
+    const imageSeo = interestPicture.childImageSharp.resize;
     const metaDescription = description || site.siteMetadata.description;
-    const metaImage = image && image.src ? `${site.siteMetadata.siteUrl}${image.src}` : null;
+    const image = imageSeo && imageSeo.src ? `${site.siteMetadata.siteUrl}${imageSeo.src}` : null;
+    console.log(imageSeo)
 
     return (
         <Helmet
@@ -63,10 +74,10 @@ function SEO({description, lang, meta, title, image}) {
                     name: `twitter:description`,
                     content: metaDescription,
                 },
-            ].concat(metaImage ? [
+            ].concat(imageSeo ? [
                 {
                     property: `og:image`,
-                    content: metaImage
+                    content: image
                 },
                 {
                     property: `og:image:alt`,
@@ -74,11 +85,11 @@ function SEO({description, lang, meta, title, image}) {
                 },
                 {
                     property: 'og:image:width',
-                    content: image.width
+                    content: imageSeo.width
                 },
                 {
                     property: 'og:image:height',
-                    content: image.height
+                    content: imageSeo.height
                 },
                 {
                     name: `twitter:card`,
@@ -90,6 +101,14 @@ function SEO({description, lang, meta, title, image}) {
                     content: `summary`,
                 },
             ])
+                .concat(
+                    keywords.length > 0
+                        ? {
+                            name: `keywords`,
+                            content: keywords.join(`, `),
+                        }
+                        : []
+                )
 
                 .concat(meta)}
         />
@@ -99,6 +118,7 @@ function SEO({description, lang, meta, title, image}) {
 SEO.defaultProps = {
     lang: `fr`,
     meta: [],
+    keywords: [],
     description: ``,
 };
 
@@ -106,6 +126,8 @@ SEO.propTypes = {
     description: PropTypes.string,
     lang: PropTypes.string,
     meta: PropTypes.arrayOf(PropTypes.object),
+    image: PropTypes.object,
+    keywords: PropTypes.arrayOf(PropTypes.string),
     title: PropTypes.string.isRequired,
 };
 
