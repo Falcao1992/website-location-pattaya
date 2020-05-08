@@ -15,7 +15,7 @@ const Metrics = () => {
     const scrollY = useScroll();
 
     const checkScrollMarker = () => {
-        if (scrollY > 200 && !scrollMarkerReached) {
+        if (scrollY > 150 && !scrollMarkerReached) {
             console.log("marker atteint")
             setScrollMarkerReached(true)
         }
@@ -35,7 +35,7 @@ const Metrics = () => {
                 <div>
                     <IconsStyled src={iconIsland} alt="icon Island" />
                 {scrollMarkerReached ?
-                    <MetricSpanStyled><CountUp end={1430} duration={4} separator={" "}/></MetricSpanStyled> :
+                    <MetricSpanStyled><CountUp end={1430} duration={3} separator={" "}/></MetricSpanStyled> :
                     <MetricSpanStyled>0</MetricSpanStyled>}
                 <p>Nb. d'iles</p>
                 </div>
@@ -44,14 +44,14 @@ const Metrics = () => {
                 <div>
                     <IconsStyled src={iconFish} alt="icon Fish" />
                     {scrollMarkerReached ?
-                    <MetricSpanStyled><CountUp end={1300} duration={5} separator={" "}/></MetricSpanStyled> :
+                    <MetricSpanStyled><CountUp end={1300} duration={3} separator={" "}/></MetricSpanStyled> :
                     <MetricSpanStyled>0</MetricSpanStyled>}
                 <p>Espèces. poissons</p>
                 </div>
                 <div>
                     <IconsStyled src={iconTemple} alt="icon Temple" />
                     {scrollMarkerReached ?
-                    <MetricSpanStyled><CountUp end={40000} duration={6} separator={" "}/></MetricSpanStyled> :
+                    <MetricSpanStyled><CountUp end={40000} duration={3} separator={" "}/></MetricSpanStyled> :
                     <MetricSpanStyled>0</MetricSpanStyled>}
                 <p>Temples</p>
                 </div>
@@ -76,13 +76,16 @@ const ContainerMetrics = styled.div`
     background: rgb(11, 11, 11);
     color: ${props => props.theme.color.primary};
     font-family: ${props => props.theme.font.primary};
+    
     @media only screen and (min-width:750px) {
         flex-direction: row;
         padding: 2rem 0;
+        margin-bottom: 0.25rem;
     }
     
     p {
         margin-top: 0.5rem;
+        font-size: 0.7rem;
     }
     
     > div {

@@ -57,7 +57,7 @@ const HomeCategories = ({className}) => (
                     fluid: data.interestPicture.childImageSharp.fluid,
                     backgroundColorDescription: "#6d1441ed",
                     title: "Les Lieux d'interets",
-                    Width: "35%",
+                    Width: "65%",
                     page: "interest",
                     description: "À une dizaine de minutes en voiture de la splendide plage de Jomtien, se trouve Sai Kaew Beach (Hat Sai Kaew). "
                 },
@@ -65,7 +65,7 @@ const HomeCategories = ({className}) => (
                     fluid: data.apartmentPicture.childImageSharp.fluid,
                     backgroundColorDescription: "#6d1441ed",
                     title: "Nos Appartements",
-                    Width: "65%",
+                    Width: "35%",
                     page: "apartments",
                     description: "L'Amazon Residence Condominium est situé à 1,2 km de la plage de Jomtien et à 2,9 km du marché flottant de Pattaya. "
                 },
@@ -73,7 +73,7 @@ const HomeCategories = ({className}) => (
                     fluid: data.activityPicture.childImageSharp.fluid,
                     backgroundColorDescription: "#379cc1",
                     title: "Les Activitées",
-                    Width: "65%",
+                    Width: "35%",
                     page: "activity",
                     description: "Découvrez le premier parc aquatique Cartoon Network au monde, le Cartoon Network Amazone, situé au sud de Pattaya. "
                 },
@@ -81,7 +81,7 @@ const HomeCategories = ({className}) => (
                     fluid: data.aboutPicture.childImageSharp.fluid,
                     backgroundColorDescription: "#1f5831ed",
                     title: "A savoir",
-                    Width: "35%",
+                    Width: "65%",
                     page: "about",
                     description: "Toutes les choses importante à savoir avant de partir, comme l'interdiction de la cigarette électronique, où échanger sont argent ect…"
                 },
@@ -103,7 +103,7 @@ const HomeCategories = ({className}) => (
                                 <Scene
                                     triggerElement={`.box${index}`}
                                     classToggle={[`.box${index}`, "fade-in"]}
-                                    offset={-200}
+                                    offset={-150}
                                     indicators={false}
                                     reverse={false}
                                 >
@@ -119,7 +119,7 @@ const HomeCategories = ({className}) => (
                                         <DescriptionBlock className={`box${index}`}>
                                             <h2>{category.title}</h2>
                                             <p>{category.description}</p>
-                                            <SeeMoreLink to={`/${category.page}`}><p>Voir plus ></p></SeeMoreLink>
+                                            <SeeMoreLink to={`/${category.page}`}><p>Découvrir</p></SeeMoreLink>
                                         </DescriptionBlock>
                                     </ContainerCategory>
                                 </Scene>
@@ -137,6 +137,12 @@ const ContainerHomeCategory = styled.div`
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        & section:nth-child(1n) {
+          padding-left: 0;
+        }
+        & section:nth-child(2n) {
+          padding-right: 0;
+        }
     }
 `;
 
@@ -144,16 +150,14 @@ const ContainerCategory = styled.section`
     position: relative;
     @media only screen and (min-width:800px) {       
         width: ${props => props.width};
-        padding: 0.5rem;   
+        padding: 0 0.25rem 0.5rem 0.25rem;   
     }
     `;
 
 const ImgStyled = styled(Img)`
     display: flex;
-    align-items: flex-end;
-    
+    align-items: flex-end;    
     @media only screen and (min-width:800px) {           
-        box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
         height: 80vh;
         overflow: visible;
     }
@@ -174,42 +178,47 @@ const DescriptionBlock = styled.div`
             font-size: 2rem;
             letter-spacing: 3px;
         }   
-        p {
-            padding: 0.4rem 0;
+        > p {
+            padding: 1rem 0;
             color: rgb(11,11,11) 
         }
         
     @media only screen and (min-width:750px) {
     position: absolute;
     padding: 1rem;
-    bottom: 1rem;
+    bottom: 1.5rem;
     left: 1rem;
-    width: calc(100% - 2rem);
+    max-width: calc(100% - 2rem);
     background: linear-gradient(90deg,rgba(15,15,18,0.45) 0%,rgba(15, 15, 18, 0.7) 50%,rgba(15,15,18,0.95) 100%);
         &:hover {
               opacity: 1;
               background-color: rgb(11,11,11, 0.8);;
         }     
-        p {
-        color: ${props => props.theme.color.primary};
+        > p {
+            color: ${props => props.theme.color.primary};
+            padding: 0.5rem 0 0.7rem 0;
         }
     }
     `;
 
 const SeeMoreLink = styled(Link)`
-        text-decoration: none;
+        text-decoration: none;       
             p {
                 color: ${props => props.theme.color.secondary};
                 font-size: 0.9rem;
                 border: 1px solid ${props => props.theme.color.secondary} ;
                 text-align: center;
+                transition: all 0.6s linear;
                 &:hover {
-                    text-decoration: underline;
+
+                    color: ${props => props.theme.color.primary};
+                    background-color: ${props => props.theme.color.secondary} ;
                 }
                     
                 @media only screen and (min-width: 800px) {
-                    border: none ;
-                    text-align: left;
+                    max-width: 25%;
+                    padding: 0.5rem;
+                    
                 }
             }
     `;

@@ -3,9 +3,19 @@ import {graphql, Link, useStaticQuery} from 'gatsby'
 import styled from 'styled-components'
 import "typeface-pinyon-script"
 import BackgroundImage from 'gatsby-background-image-es5'
+import Typewriter from 'typewriter-effect';
 import "./Header.css"
 
 export default ({className, pathPage}) => {
+
+    const slogan = {
+        home: "Envie de superbes vacances ?",
+        apartments: "Des appartements tout confort !",
+        activity: "Vous ne vous ennuierez jamais !",
+        interest: "Des paysages magnifique !",
+        about: "S'informer avant de partir !",
+        contact: "Nous répondrons à toutes vos questions !",
+    };
 
     const data = useStaticQuery(graphql`
         {
@@ -33,7 +43,7 @@ export default ({className, pathPage}) => {
     const allImagesDataBanner = data.allImageSharp.edges;
     const handleChooseBackgroundImage = () => {
         if (pathPage === "/") {
-            pathPage = "category"
+            pathPage = "home"
         }
         if (allImagesDataBanner.length < 1) {
             return <p>site en maintenance</p>
@@ -44,7 +54,7 @@ export default ({className, pathPage}) => {
 
     const handleChooseBackgroundImageAlt = () => {
         if (pathPage === "/") {
-            pathPage = "category"
+            pathPage = "home"
         }
         if (allImagesDataBanner.length < 1) {
             return <p>site en maintenance</p>
@@ -59,6 +69,18 @@ export default ({className, pathPage}) => {
         }
     };
 
+    const sloganMatch = (pathPageRef) => {
+        return <Typewriter
+            onInit={(typewriter) => {
+                typewriter
+                    .changeDelay(100)
+                    .typeString(`${slogan[pathPageRef]}`)
+                    .pauseFor(2500)
+                    .start();
+            }}
+        />
+    };
+
 
     return (
         <>
@@ -71,14 +93,14 @@ export default ({className, pathPage}) => {
                 <TopBar>
                     <NavStyled>
                         <Link to="/">
-                            {pathPage === "category"
+                            {pathPage === "home"
                                 ?
 
-                                <MenuItemH1 className={pathMatch("category")}>Location d'Appartements à
+                                <MenuItemH1 className={pathMatch("home")}>Location d'Appartements à
                                     Pattaya</MenuItemH1>
 
                                 :
-                                <MenuItem className={pathMatch("category")}>Location d'Appartements à Pattaya</MenuItem>
+                                <MenuItem className={pathMatch("home")}>Location d'Appartements à Pattaya</MenuItem>
                             }
 
                         </Link>
@@ -88,17 +110,37 @@ export default ({className, pathPage}) => {
                         <Link to="/interest"><MenuItem className={pathMatch("interest")}>Interets</MenuItem></Link>
                         <Link to="/about"><MenuItem className={pathMatch("about")}>A Savoir</MenuItem></Link>
                         <Link to="/contact"><MenuItem className={pathMatch("contact")}>Nous contacter</MenuItem></Link>
+
                     </NavStyled>
                 </TopBar>
                 <Baseline>
-                    <span>Welcome</span>
+                    <small>Welcome</small>
                     <strong>Pattaya</strong>
-                    <p>des appartements pour vos vacances</p>
+                    <ContainerTypewriter>
+                        {sloganMatch(pathPage)}
+                    </ContainerTypewriter>
                 </Baseline>
             </StyledBackgroundSection>}
         </>
     )
 };
+
+const ContainerTypewriter = styled.div`
+    display: flex;
+    justify-content: center;
+    span {
+        display: inline-block;
+        padding: 10px 0;
+        letter-spacing: 2px;
+        font-size: .7rem;
+        text-shadow: 1px 1px 3px #000000;
+    }
+    @media only screen and (min-width:750px) {                 
+            span {
+                font-size: 1.4rem;
+            }
+        }
+    `;
 
 const NavStyled = styled.nav`
     display: flex;
@@ -120,7 +162,7 @@ const NavStyled = styled.nav`
 const StyledBackgroundSection = styled(BackgroundImage)`
     color: ${props => props.theme.color.primary};
     text-transform: uppercase;
-    border-bottom: 1px solid ${props => props.theme.color.secondary};
+    height: 70vh;
     `;
 
 const TopBar = styled.div`
@@ -156,7 +198,7 @@ const Baseline = styled.div`
     text-align: center;
     display: block;
     padding: 15px 0;
-        span {
+        small {
             font-family: 'pinyon script' , cursive;
             font-size: 3rem;
             text-align: center;
@@ -169,18 +211,12 @@ const Baseline = styled.div`
             display: block;
             font-size: 2.70rem;
             letter-spacing: 3px;
-            text-shadow: 3px 4px 4px #000000;
+            text-shadow: 1px 1px 3px #000000;
         }
-        p {
-            display: block;
-            padding: 10px 0;
-            letter-spacing: 2px;
-            font-size: .7rem;
-            text-shadow: 3px 4px 4px #000000;
-        }
+        
         @media only screen and (min-width:750px) {
             padding: 4rem;
-            span {
+            small {
                 font-size: 4rem;
             }
             strong {

@@ -173,6 +173,8 @@ const TitlePageStyled = styled.h1`
         font-size: 2.2rem;
         border-bottom: 1px solid ${props => props.theme.color.secondary};
         letter-spacing: 3px;
+        width: 70%;
+        margin: 1.5rem auto;
         `;
 
 const ToastHasBeenSent = styled.p`
