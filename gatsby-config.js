@@ -14,10 +14,13 @@ const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
 
 module.exports = {
   siteMetadata: {
-    title: `Location d'Appartements à Pattaya`,
-    description: `Ici vous trouverez la location pour passer pour des vacances de rêve.`,
+    title: `Location d'Appartements Particulier à Pattaya`,
+    description: `Envie de voyayer en Thaïlande ? nous vous proposons des appartements à louer pour passer des vacances de rêve.`,
     author: `Eduardo Lépine`,
     siteUrl: siteUrl,
+    social: {
+      twitter: `eduardo`,
+    },
   },
   plugins: [
     {
