@@ -3,7 +3,6 @@ import {graphql} from "gatsby";
 import Layout from "../components/layout";
 import Img from "gatsby-image"
 import styled from "styled-components";
-import "typeface-pinyon-script"
 import Header from "../components/Header";
 import SEO from "../components/seo";
 
@@ -84,83 +83,27 @@ export const query = graphql`
     }
 `;
 
-const TitleStyled = styled.h1`
-    font-family: ${props => props.theme.font.secondary};
-    color: ${props => props.theme.color.secondary};
-    letter-spacing: 5px;
-    border-bottom: 1px solid ${props => props.theme.color.secondary};
-    text-align: center;
-    `;
-
 const ContainerBodyPage = styled.div`
     display: flex;
     flex-direction: column;
     margin: auto;
-    width: calc(100% - 2rem);
+    width: 90%;
     `;
 
-const ArticleContent = styled.div`   
-          margin-bottom: 20px;
-          @media only screen and (min-width:750px) {      
-                display: flex;
-                justify-content: space-between;
-                width: 90%;
-                margin: 4rem auto;                                                     
-            }
-    `;
-const ArticleBody = styled.div`
-    align-self: center;
-        p {
-            font-family: ${props => props.theme.font.primary};
-            padding: 1rem 0 0.3rem 0;
-            font-size: 0.9rem;
-        }
-    @media only screen and (min-width:750px) {      
-              width: 50%;
-              align-self: center;
-              background: ${props => props.position === "right" ? "linear-gradient(90deg,rgba(200, 148, 70, 0.6) 0%,rgba(200, 148, 70, 0.3) 50%,rgba(200, 148, 70, 0.1) 100%)" : "linear-gradient(90deg,rgba(200, 148, 70, 0.1) 0%,rgba(200, 148, 70, 0.3) 50%,rgba(200, 148, 70, 0.6) 100%);"};
-              box-shadow: ${props => props.position === "right" ? "-6px 15px 25px 0 rgba(0,0,0,0.3)" : "6px 15px 25px 0 rgba(0,0,0,0.3)"};         
-              padding: 1rem;                   
-            }
+const TitleStyled = styled.h1`
+    color: ${props => props.theme.color.secondary};
+    letter-spacing: 1px;
+    border-bottom: 1px solid ${props => props.theme.color.secondary};
+    font-size: 1.7rem;
+    padding-bottom: 0.2rem;
     `;
 
-const ArticleTitle = styled.h3`            
-        text-transform: none;
-        font-family: 'pinyon script' , sans-serif;
-        color: ${props => props.theme.color.secondary};
-        display: block;
-        font-size: 2.1rem;
-        letter-spacing: 1px;
-        &::before {
-            display: block;
-            content: "";
-            width: 24px;
-            height: 2px;
-            background: #C89446;
-            margin-bottom: 10px;
-            clear: both;
-        }  
-    `;
-
-const ArticleLocation = styled.span`
-        font-size: 0.7rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        line-height: 1.2;
-        margin-bottom: 5px;
-        `;
-
-
-const SourceLink = styled.a`
-        color: ${props => props.theme.color.secondary};                   
-        @media only screen and (min-width:750px) {
-        text-decoration: none;          
-            span {               
-                font-size: 0.9rem;
-                &:hover {
-                text-decoration: underline;
-                }
-            }              
+const ArticleContent = styled.article`   
+    margin-bottom: 2rem;
+        @media only screen and (min-width:750px) {      
+            display: flex;
+            justify-content: space-between;        
+            margin: 4rem auto;                                                     
         }
     `;
 
@@ -170,13 +113,12 @@ const ContainerImg = styled.div`
         width: 40%;
         align-self: center;
         order: ${props => props.position === "right" ? 1 : 0};
-        transition: transform .7s ease-in-out .7s;
-        
+        transition: transform .7s ease-in-out .7s;      
         &:hover {
-        transform: scale(1.1);
+            transform: scale(1.1);
         }                        
     }
-`;
+    `;
 
 const StyledImg = styled(Img)`
     border: ${props => props.theme.color.secondary} 1px solid;
@@ -198,3 +140,55 @@ const StyledImg = styled(Img)`
         }     
     }
     `;
+
+const ArticleBody = styled.div`
+    align-self: center;
+        p {
+            padding: 1rem 0 0.8rem 0;
+            font-size: 0.9rem;
+        }
+    @media only screen and (min-width:750px) {      
+        width: 50%;
+        align-self: center;
+        background: ${props => props.position === "right" ? "linear-gradient(90deg,rgba(200, 148, 70, 0.6) 0%,rgba(200, 148, 70, 0.3) 50%,rgba(200, 148, 70, 0.1) 100%)" : "linear-gradient(90deg,rgba(200, 148, 70, 0.1) 0%,rgba(200, 148, 70, 0.3) 50%,rgba(200, 148, 70, 0.6) 100%);"};
+        box-shadow: ${props => props.position === "right" ? "-6px 15px 25px 0 rgba(0,0,0,0.3)" : "6px 15px 25px 0 rgba(0,0,0,0.3)"};         
+        padding: 1rem;                   
+    }
+    `;
+
+const ArticleTitle = styled.h2`            
+    text-transform: none;
+    color: ${props => props.theme.color.secondary};
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+    &::before {
+        display: block;
+        content: "";
+        width: 24px;
+        height: 2px;
+        background: #C89446;
+        margin-bottom: 10px;
+        clear: both;
+    }  
+    `;
+
+const ArticleLocation = styled.span`
+    font-size: 0.7rem;
+    font-weight: 700;
+    `;
+
+const SourceLink = styled.a`
+    color: ${props => props.theme.color.secondary};                   
+    @media only screen and (min-width:750px) {
+        text-decoration: none;          
+        span {               
+            font-size: 0.9rem;
+            &:hover {
+                text-decoration: underline;
+            }
+        }              
+    }
+    `;
+
+
+

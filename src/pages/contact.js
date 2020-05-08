@@ -10,6 +10,6 @@ const SecondPage = () => (
       <Header pathPage={"contact"}/>
     <ContactForm/>
   </Layout>
-)
+);
 
 export default SecondPage

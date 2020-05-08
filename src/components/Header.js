@@ -1,7 +1,6 @@
 import React from 'react'
 import {graphql, Link, useStaticQuery} from 'gatsby'
 import styled from 'styled-components'
-import "typeface-pinyon-script"
 import BackgroundImage from 'gatsby-background-image-es5'
 import Typewriter from 'typewriter-effect';
 import "./Header.css"
@@ -81,7 +80,6 @@ export default ({className, pathPage}) => {
         />
     };
 
-
     return (
         <>
             {<StyledBackgroundSection
@@ -102,7 +100,6 @@ export default ({className, pathPage}) => {
                                 :
                                 <MenuItem className={pathMatch("home")}>Location d'Appartements à Pattaya</MenuItem>
                             }
-
                         </Link>
                         <Link to="/apartments"><MenuItem
                             className={pathMatch("apartments")}>Appartement</MenuItem></Link>
@@ -146,6 +143,7 @@ const NavStyled = styled.nav`
     display: flex;
     flex-direction: column;
     line-height: 1.8;
+    align-items: center;
         & a:first-child {
             padding-bottom: 1.2rem;
             font-size: 1.2rem;
@@ -155,6 +153,7 @@ const NavStyled = styled.nav`
         padding: 0.5rem 2rem;
         & a:first-child {
             margin-right: auto;
+            padding-bottom: 0;
         }
     }
     `;
@@ -162,7 +161,6 @@ const NavStyled = styled.nav`
 const StyledBackgroundSection = styled(BackgroundImage)`
     color: ${props => props.theme.color.primary};
     text-transform: uppercase;
-    height: 70vh;
     `;
 
 const TopBar = styled.div`
@@ -176,30 +174,33 @@ const MenuItem = styled.span`
     color: ${props => props.theme.color.primary};
     text-decoration: none;
     transition: color .3s;
+    font-size: 0.8rem;
+    font-weight: 300;
         &:hover {
           color: ${props => props.theme.color.secondary};
         }
     `;
+
 const MenuItemH1 = styled.h1`
     font-weight: 500;
-    font-size: 1.2rem;
     display: inline-block;
     margin: 0 15px;
     color: ${props => props.theme.color.primary};
     text-decoration: none;
     transition: color .3s;
+    font-size: 0.9rem;
     &:hover {
         color: ${props => props.theme.color.secondary};
-    }
-    
+    }  
     `;
 
 const Baseline = styled.div`
     text-align: center;
     display: block;
-    padding: 15px 0;
+    margin: auto 0;
+    padding: 4rem 1.5rem;   
         small {
-            font-family: 'pinyon script' , cursive;
+            font-family: ${props => props.theme.font.secondary};
             font-size: 3rem;
             text-align: center;
             display: block;
@@ -212,15 +213,15 @@ const Baseline = styled.div`
             font-size: 2.70rem;
             letter-spacing: 3px;
             text-shadow: 1px 1px 3px #000000;
-        }
-        
+        }     
         @media only screen and (min-width:750px) {
-            padding: 4rem;
+            padding: 5rem;
             small {
                 font-size: 4rem;
             }
             strong {
                 font-size: 3.7rem;
+                padding: 1rem;
             }          
             p {
                 font-size: 1.4rem;

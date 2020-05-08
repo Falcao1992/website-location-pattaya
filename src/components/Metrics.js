@@ -75,19 +75,15 @@ const ContainerMetrics = styled.div`
     padding: 1rem 0;
     background: rgb(11, 11, 11);
     color: ${props => props.theme.color.primary};
-    font-family: ${props => props.theme.font.primary};
-    
+    font-family: ${props => props.theme.font.primary};    
     @media only screen and (min-width:750px) {
         flex-direction: row;
         padding: 2rem 0;
-        margin-bottom: 0.25rem;
-    }
-    
+        margin: 0.25rem 0;
+    }  
     p {
         margin-top: 0.5rem;
-        font-size: 0.7rem;
-    }
-    
+    }   
     > div {
         width: 100%;
         padding: 0.8rem;

@@ -4,8 +4,8 @@ const theme = {
         secondary: '#C89446',
     },
     font: {
-        primary: 'Roboto, serif',
-        secondary: 'pinyon script , cursive'
+        primary: 'Inknut Antiqua, serif;',
+        secondary: 'Pinyon Script, cursive;'
     }
 };
 

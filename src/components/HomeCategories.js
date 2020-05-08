@@ -3,7 +3,6 @@ import {graphql, StaticQuery, Link} from 'gatsby'
 import styled from 'styled-components'
 import Img from "gatsby-image"
 import "./HomeCategories.css"
-import "typeface-pinyon-script"
 
 import {Controller, Scene} from "react-scrollmagic";
 
@@ -107,6 +106,12 @@ const HomeCategories = ({className}) => (
                                     indicators={false}
                                     reverse={false}
                                 >
+                                    <>
+                                    {category.page === "contact" &&
+                                        <div>
+                                            <p>saluuuuttt tout le monde</p>
+                                        </div>
+                                    }
                                     <ContainerCategory page={category.page} width={category.Width}>
                                         <ImgStyled
                                             Tag="div"
@@ -122,6 +127,7 @@ const HomeCategories = ({className}) => (
                                             <SeeMoreLink to={`/${category.page}`}><p>Découvrir</p></SeeMoreLink>
                                         </DescriptionBlock>
                                     </ContainerCategory>
+                                        </>
                                 </Scene>
                             </Controller>
                         )
@@ -170,14 +176,7 @@ const DescriptionBlock = styled.div`
     letter-spacing: 1px;
     padding: 1rem;
     box-shadow: -10px 20px 25px 0 rgba(0,0,0,0.7);
-    transition: all 0.6s linear;
-    
-        h2 {
-            font-family: ${props => props.theme.font.secondary};
-            color: ${props => props.theme.color.secondary};
-            font-size: 2rem;
-            letter-spacing: 3px;
-        }   
+    transition: all 0.6s linear;   
         > p {
             padding: 1rem 0;
             color: rgb(11,11,11) 
@@ -202,23 +201,21 @@ const DescriptionBlock = styled.div`
     `;
 
 const SeeMoreLink = styled(Link)`
-        text-decoration: none;       
+        text-decoration: none;           
             p {
                 color: ${props => props.theme.color.secondary};
                 font-size: 0.9rem;
                 border: 1px solid ${props => props.theme.color.secondary} ;
                 text-align: center;
                 transition: all 0.6s linear;
+                padding: 1rem;
                 &:hover {
-
                     color: ${props => props.theme.color.primary};
                     background-color: ${props => props.theme.color.secondary} ;
-                }
-                    
+                }                   
                 @media only screen and (min-width: 800px) {
-                    max-width: 25%;
+                    max-width: 35%;
                     padding: 0.5rem;
-                    
                 }
             }
     `;

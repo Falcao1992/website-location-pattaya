@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import {Button, TextField } from "@material-ui/core";
 import CheckIcon from '@material-ui/icons/Check';
-import "typeface-pinyon-script"
 import app from "../firebase";
 
 
