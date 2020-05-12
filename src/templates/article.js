@@ -47,7 +47,7 @@ export default ({data, pageContext}) => {
 
                                 <p>{article.content}</p>
                                 {(article.source && article.source !== "none") &&
-                                <SourceLink href={article.source} target="_blank" rel="noopener noreferrer"><span>Voir la source</span></SourceLink>}
+                                <SourceLink href={article.source} target="_blank" rel="noopener noreferrer"><span>Source</span></SourceLink>}
                             </ArticleBody>
                         </ArticleContent>
                     )
@@ -100,7 +100,8 @@ const TitleStyled = styled.h1`
 
 const ArticleContent = styled.article`   
     margin-bottom: 2rem;
-        @media only screen and (min-width:750px) {      
+    z-index: -1;
+        @media only screen and (min-width:800px) {      
             display: flex;
             justify-content: space-between;        
             margin: 4rem auto;                                                     
@@ -108,7 +109,7 @@ const ArticleContent = styled.article`
     `;
 
 const ContainerImg = styled.div`
-    @media only screen and (min-width:750px) {
+    @media only screen and (min-width:800px) {
         position: relative;
         width: 40%;
         align-self: center;
@@ -123,7 +124,7 @@ const ContainerImg = styled.div`
 const StyledImg = styled(Img)`
     border: ${props => props.theme.color.secondary} 1px solid;
     margin-bottom: 20px;
-    @media only screen and (min-width:750px) {    
+    @media only screen and (min-width:800px) {    
         border: none;  
         position: relative;
         height: auto;
@@ -146,8 +147,13 @@ const ArticleBody = styled.div`
         p {
             padding: 1rem 0 0.8rem 0;
             font-size: 0.9rem;
+            line-height: 1.3rem;
         }
-    @media only screen and (min-width:750px) {      
+        h2 {
+        font-size: 1.2rem;
+        letter-spacing: 0;
+        }
+    @media only screen and (min-width:800px) {      
         width: 50%;
         align-self: center;
         background: ${props => props.position === "right" ? "linear-gradient(90deg,rgba(200, 148, 70, 0.6) 0%,rgba(200, 148, 70, 0.3) 50%,rgba(200, 148, 70, 0.1) 100%)" : "linear-gradient(90deg,rgba(200, 148, 70, 0.1) 0%,rgba(200, 148, 70, 0.3) 50%,rgba(200, 148, 70, 0.6) 100%);"};
@@ -178,8 +184,9 @@ const ArticleLocation = styled.span`
     `;
 
 const SourceLink = styled.a`
-    color: ${props => props.theme.color.secondary};                   
-    @media only screen and (min-width:750px) {
+    color: ${props => props.theme.color.secondary};
+    font-size: 0.85rem;                   
+    @media only screen and (min-width:800px) {
         text-decoration: none;          
         span {               
             font-size: 0.9rem;

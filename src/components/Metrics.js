@@ -63,7 +63,7 @@ const Metrics = () => {
 const IconsStyled = styled.img`
     width: 2.5rem;
     margin-bottom: 0.5rem;
-    @media only screen and (min-width: 850px) {
+    @media only screen and (min-width: 800px) {
         width: 3.5rem;
     }
 `;
@@ -73,10 +73,10 @@ const ContainerMetrics = styled.div`
     display: flex;
     align-items: center;
     padding: 1rem 0;
-    background: rgb(11, 11, 11);
+    background: ${props => props.theme.color.dark};
     color: ${props => props.theme.color.primary};
     font-family: ${props => props.theme.font.primary};    
-    @media only screen and (min-width:750px) {
+    @media only screen and (min-width:800px) {
         flex-direction: row;
         padding: 2rem 0;
         margin: 0.25rem 0;

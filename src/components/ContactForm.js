@@ -165,13 +165,11 @@ const ContactForm = () => {
 };
 
 const TitlePageStyled = styled.h1`
-        text-align: center;
         padding: 15px 0;
         color: ${props => props.theme.color.secondary};
-        font-family: 'pinyon script' , cursive;
-        font-size: 2.2rem;
+        font-size: 0.9rem;
         border-bottom: 1px solid ${props => props.theme.color.secondary};
-        letter-spacing: 3px;
+        letter-spacing: 1px;
         width: 70%;
         margin: 1.5rem auto;
         `;
@@ -193,7 +191,7 @@ const FormStyled = styled.form`
         input {
             margin-bottom: 15px;
         }
-        @media only screen and (min-width:750px) {
+        @media only screen and (min-width:800px) {
             width: 70%;
             margin: auto;       
         }

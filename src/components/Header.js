@@ -1,11 +1,17 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {graphql, Link, useStaticQuery} from 'gatsby'
 import styled from 'styled-components'
 import BackgroundImage from 'gatsby-background-image-es5'
 import Typewriter from 'typewriter-effect';
+import MenuIcon from '@material-ui/icons/Menu';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+
 import "./Header.css"
 
+
 export default ({className, pathPage}) => {
+
+    const [burgerIsActive, setBurgerIsActive] = useState(false);
 
     const slogan = {
         home: "Envie de superbes vacances ?",
@@ -40,6 +46,17 @@ export default ({className, pathPage}) => {
     `);
 
     const allImagesDataBanner = data.allImageSharp.edges;
+
+
+    const handleBurger = (e) => {
+        e.stopPropagation();
+        if (burgerIsActive === false) {
+            setBurgerIsActive(true)
+        } else {
+            setBurgerIsActive(false)
+        }
+    };
+
     const handleChooseBackgroundImage = () => {
         if (pathPage === "/") {
             pathPage = "home"
@@ -88,28 +105,37 @@ export default ({className, pathPage}) => {
                 fluid={handleChooseBackgroundImage()}
                 alt={handleChooseBackgroundImageAlt()}
             >
-                <TopBar>
-                    <NavStyled>
+                <NavStyled>
+                    <ListItemIconStyled>
+                        <MenuIcon fontSize="large" onClick={handleBurger}/>
                         <Link to="/">
                             {pathPage === "home"
                                 ?
-
-                                <MenuItemH1 className={pathMatch("home")}>Location d'Appartements à
-                                    Pattaya</MenuItemH1>
-
+                                <MenuItemH1 className={pathMatch("home")}>Accueil</MenuItemH1>
                                 :
-                                <MenuItem className={pathMatch("home")}>Location d'Appartements à Pattaya</MenuItem>
+                                <MenuItem className={pathMatch("home")}>Accueil</MenuItem>
+                            }
+                        </Link>
+                    </ListItemIconStyled>
+
+                    <ContainerLink burgerIsActive={burgerIsActive}>
+                        <Link to="/">
+                            {pathPage === "home"
+                                ?
+                                <MenuItemH1 className={pathMatch("home")}>Accueil</MenuItemH1>
+                                :
+                                <MenuItem className={pathMatch("home")}>Accueil</MenuItem>
                             }
                         </Link>
                         <Link to="/apartments"><MenuItem
                             className={pathMatch("apartments")}>Appartement</MenuItem></Link>
-                        <Link to="/activity"><MenuItem className={pathMatch("activity")}>Activité</MenuItem></Link>
+                        <Link to="/activity"><MenuItem className={pathMatch("activity")}>Activités</MenuItem></Link>
                         <Link to="/interest"><MenuItem className={pathMatch("interest")}>Interets</MenuItem></Link>
                         <Link to="/about"><MenuItem className={pathMatch("about")}>A Savoir</MenuItem></Link>
                         <Link to="/contact"><MenuItem className={pathMatch("contact")}>Nous contacter</MenuItem></Link>
+                    </ContainerLink>
+                </NavStyled>
 
-                    </NavStyled>
-                </TopBar>
                 <Baseline>
                     <small>Welcome</small>
                     <strong>Pattaya</strong>
@@ -117,60 +143,94 @@ export default ({className, pathPage}) => {
                         {sloganMatch(pathPage)}
                     </ContainerTypewriter>
                 </Baseline>
-            </StyledBackgroundSection>}
+            </StyledBackgroundSection>
+            }
         </>
     )
 };
 
-const ContainerTypewriter = styled.div`
-    display: flex;
-    justify-content: center;
-    span {
-        display: inline-block;
-        padding: 10px 0;
-        letter-spacing: 2px;
-        font-size: .7rem;
-        text-shadow: 1px 1px 3px #000000;
+const StyledBackgroundSection = styled(BackgroundImage)`
+    color: ${props => props.theme.color.primary};
+    text-transform: uppercase;
+    height: 60vh;
+    @media only screen and (min-width:800px) {
+        height: auto;
     }
-    @media only screen and (min-width:750px) {                 
-            span {
-                font-size: 1.4rem;
-            }
-        }
     `;
 
 const NavStyled = styled.nav`
     display: flex;
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
     flex-direction: column;
     line-height: 1.8;
     align-items: center;
-        & a:first-child {
-            padding-bottom: 1.2rem;
-            font-size: 1.2rem;
-        }
-    @media only screen and (min-width:750px) {
+    
+    @media only screen and (min-width:800px) {
+        position: relative;
         flex-direction: row;
-        padding: 0.5rem 2rem;
-        & a:first-child {
+        padding: 1rem 1.5rem;
+        & a:first-child {           
             margin-right: auto;
-            padding-bottom: 0;
         }
     }
     `;
 
-const StyledBackgroundSection = styled(BackgroundImage)`
+const ListItemIconStyled = styled(ListItemIcon)`
     color: ${props => props.theme.color.primary};
-    text-transform: uppercase;
+    background-color: rgba(0, 0, 0, 0.975);
+    z-index: 1000;
+    min-width: auto;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    @media only screen and (min-width:800px) {
+        display: none;
+    }
+        a{
+        align-self: center;
+        }
     `;
 
-const TopBar = styled.div`
-    padding-top: 20px;
-    text-align: center;
+const ContainerLink = styled.div`
+    display: flex;
+    transform: ${props => props.burgerIsActive ? "translateY(0vh)" : "translateY(-100vh)"}; 
+    flex-direction: column;
+    width: 100%;
+    padding: 0.5rem 3rem 3rem;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.975);
+    transition: transform 1s ease-in-out;
+        & a:first-child {           
+            display: none;
+            border-bottom: none;
+            text-decoration: none;
+        }
+        a {
+          border-bottom: 1px solid lightgray;
+        }
+        
+    @media only screen and (min-width:800px) {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            align-items: center;
+            background-color: transparent;
+            transform: translateY(0);
+            & a:first-child {           
+            display: flex;
+            }
+            a {
+                border-bottom: none;
+            }     
+    }
     `;
 
 const MenuItem = styled.span`
     display: inline-block;
-    margin: 0 15px;
+    margin: 0.5rem 0;
     color: ${props => props.theme.color.primary};
     text-decoration: none;
     transition: color .3s;
@@ -179,26 +239,33 @@ const MenuItem = styled.span`
         &:hover {
           color: ${props => props.theme.color.secondary};
         }
+    @media only screen and (min-width:800px) {
+        margin: 0 1rem;
+    }
     `;
 
 const MenuItemH1 = styled.h1`
-    font-weight: 500;
+    font-size: 0.8rem;
+    font-weight: 300;
     display: inline-block;
-    margin: 0 15px;
+    margin: 0.5rem 0;
     color: ${props => props.theme.color.primary};
     text-decoration: none;
     transition: color .3s;
-    font-size: 0.9rem;
+    
     &:hover {
         color: ${props => props.theme.color.secondary};
     }  
     `;
 
 const Baseline = styled.div`
-    text-align: center;
-    display: block;
-    margin: auto 0;
-    padding: 4rem 1.5rem;   
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        margin: auto 0;
+        height: 70vh;
+        justify-content: center;  
+        padding: 0 1rem;
         small {
             font-family: ${props => props.theme.font.secondary};
             font-size: 3rem;
@@ -214,8 +281,9 @@ const Baseline = styled.div`
             letter-spacing: 3px;
             text-shadow: 1px 1px 3px #000000;
         }     
-        @media only screen and (min-width:750px) {
-            padding: 5rem;
+        @media only screen and (min-width:800px) {
+            padding-bottom: 3rem;
+            height: 60vh;
             small {
                 font-size: 4rem;
             }
@@ -228,4 +296,23 @@ const Baseline = styled.div`
             }
         }
     `;
+
+const ContainerTypewriter = styled.div`
+    display: flex;
+    justify-content: center;
+    span {
+        display: contents;
+        padding: 10px 0;
+        letter-spacing: 2px;
+        font-size: .7rem;
+        text-shadow: 1px 1px 3px #000000;
+    }
+    
+    @media only screen and (min-width:800px) {                 
+            span {
+                font-size: 1.4rem;
+            }
+        }
+    `;
+
 

@@ -107,11 +107,11 @@ const HomeCategories = ({className}) => (
                                     reverse={false}
                                 >
                                     <>
-                                    {category.page === "contact" &&
+                                    {/*category.page === "contact" &&
                                         <div>
                                             <p>saluuuuttt tout le monde</p>
                                         </div>
-                                    }
+                                    */}
                                     <ContainerCategory page={category.page} width={category.Width}>
                                         <ImgStyled
                                             Tag="div"
@@ -139,6 +139,7 @@ const HomeCategories = ({className}) => (
 );
 
 const ContainerHomeCategory = styled.div`
+    
     @media only screen and (min-width:800px) {       
         display: flex;
         flex-direction: row;
@@ -154,6 +155,7 @@ const ContainerHomeCategory = styled.div`
 
 const ContainerCategory = styled.section`
     position: relative;
+    z-index: -1;
     @media only screen and (min-width:800px) {       
         width: ${props => props.width};
         padding: 0 0.25rem 0.5rem 0.25rem;   
@@ -162,7 +164,8 @@ const ContainerCategory = styled.section`
 
 const ImgStyled = styled(Img)`
     display: flex;
-    align-items: flex-end;    
+    align-items: flex-end;
+    z-index: -1000;    
     @media only screen and (min-width:800px) {           
         height: 80vh;
         overflow: visible;
@@ -176,13 +179,14 @@ const DescriptionBlock = styled.div`
     letter-spacing: 1px;
     padding: 1rem;
     box-shadow: -10px 20px 25px 0 rgba(0,0,0,0.7);
-    transition: all 0.6s linear;   
+    transition: all 0.6s linear;
+    z-index: -1000;       
         > p {
             padding: 1rem 0;
             color: rgb(11,11,11) 
         }
         
-    @media only screen and (min-width:750px) {
+    @media only screen and (min-width:800px) {
     position: absolute;
     padding: 1rem;
     bottom: 1.5rem;
