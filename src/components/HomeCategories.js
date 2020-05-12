@@ -139,7 +139,8 @@ const HomeCategories = ({className}) => (
 );
 
 const ContainerHomeCategory = styled.div`
-    
+    position: absolute;
+    z-index: -1;
     @media only screen and (min-width:800px) {       
         display: flex;
         flex-direction: row;
@@ -155,7 +156,6 @@ const ContainerHomeCategory = styled.div`
 
 const ContainerCategory = styled.section`
     position: relative;
-    z-index: -1;
     @media only screen and (min-width:800px) {       
         width: ${props => props.width};
         padding: 0 0.25rem 0.5rem 0.25rem;   
@@ -165,7 +165,7 @@ const ContainerCategory = styled.section`
 const ImgStyled = styled(Img)`
     display: flex;
     align-items: flex-end;
-    z-index: -1000;    
+    z-index: -1;  
     @media only screen and (min-width:800px) {           
         height: 80vh;
         overflow: visible;
@@ -179,11 +179,16 @@ const DescriptionBlock = styled.div`
     letter-spacing: 1px;
     padding: 1rem;
     box-shadow: -10px 20px 25px 0 rgba(0,0,0,0.7);
-    transition: all 0.6s linear;
-    z-index: -1000;       
+    transition: all 0.6s linear;     
         > p {
             padding: 1rem 0;
-            color: rgb(11,11,11) 
+            color: rgb(11,11,11) ;
+            z-index: -1;
+            position: relative;
+        }
+        h2 {
+            z-index: -1;
+            position: relative;
         }
         
     @media only screen and (min-width:800px) {
@@ -213,6 +218,8 @@ const SeeMoreLink = styled(Link)`
                 text-align: center;
                 transition: all 0.6s linear;
                 padding: 1rem;
+                z-index: -2;
+                position: relative;
                 &:hover {
                     color: ${props => props.theme.color.primary};
                     background-color: ${props => props.theme.color.secondary} ;

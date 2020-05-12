@@ -100,7 +100,6 @@ const TitleStyled = styled.h1`
 
 const ArticleContent = styled.article`   
     margin-bottom: 2rem;
-    z-index: -1;
         @media only screen and (min-width:800px) {      
             display: flex;
             justify-content: space-between;        
@@ -124,6 +123,7 @@ const ContainerImg = styled.div`
 const StyledImg = styled(Img)`
     border: ${props => props.theme.color.secondary} 1px solid;
     margin-bottom: 20px;
+    z-index: -1;
     @media only screen and (min-width:800px) {    
         border: none;  
         position: relative;

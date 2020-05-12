@@ -162,7 +162,6 @@ const NavStyled = styled.nav`
     display: flex;
     width: 100%;
     position: fixed;
-    z-index: 1000;
     flex-direction: column;
     line-height: 1.8;
     align-items: center;
@@ -186,8 +185,10 @@ const ListItemIconStyled = styled(ListItemIcon)`
     width: 100%;
     display: flex;
     justify-content: space-between;
+    position: fixed;
     @media only screen and (min-width:800px) {
         display: none;
+        position: relative;
     }
         a{
         align-self: center;
@@ -196,13 +197,14 @@ const ListItemIconStyled = styled(ListItemIcon)`
 
 const ContainerLink = styled.div`
     display: flex;
-    transform: ${props => props.burgerIsActive ? "translateY(0vh)" : "translateY(-100vh)"}; 
+    transform: ${props => props.burgerIsActive ? "translateY(3rem)" : "translateY(-100vh)"}; 
     flex-direction: column;
     width: 100%;
     padding: 0.5rem 3rem 3rem;
     margin: auto;
     background-color: rgba(0, 0, 0, 0.975);
-    transition: transform 1s ease-in-out;
+    transition: transform .9s ease-in-out ;
+    position: fixed;
         & a:first-child {           
             display: none;
             border-bottom: none;
@@ -219,6 +221,7 @@ const ContainerLink = styled.div`
             align-items: center;
             background-color: transparent;
             transform: translateY(0);
+            position: relative;
             & a:first-child {           
             display: flex;
             }
@@ -229,29 +232,33 @@ const ContainerLink = styled.div`
     `;
 
 const MenuItem = styled.span`
+    font-size: 0.8rem;
     display: inline-block;
+    font-weight: 300;
     margin: 0.5rem 0;
     color: ${props => props.theme.color.primary};
     text-decoration: none;
     transition: color .3s;
-    font-size: 0.8rem;
-    font-weight: 300;
         &:hover {
           color: ${props => props.theme.color.secondary};
         }
     @media only screen and (min-width:800px) {
-        margin: 0 1rem;
+        margin: 0.5rem 1rem;
     }
     `;
 
 const MenuItemH1 = styled.h1`
     font-size: 0.8rem;
-    font-weight: 300;
     display: inline-block;
+    font-weight: 300;
     margin: 0.5rem 0;
     color: ${props => props.theme.color.primary};
     text-decoration: none;
     transition: color .3s;
+    
+    @media only screen and (min-width:800px) {
+        margin: 0.5rem 1rem;
+    }
     
     &:hover {
         color: ${props => props.theme.color.secondary};
