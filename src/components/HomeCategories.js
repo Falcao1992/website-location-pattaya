@@ -62,7 +62,6 @@ const HomeCategories = ({className}) => (
                 },
                 {
                     fluid: data.apartmentPicture.childImageSharp.fluid,
-                    backgroundColorDescription: "#6d1441ed",
                     title: "Nos Appartements",
                     Width: "35%",
                     page: "apartments",
@@ -70,7 +69,6 @@ const HomeCategories = ({className}) => (
                 },
                 {
                     fluid: data.activityPicture.childImageSharp.fluid,
-                    backgroundColorDescription: "#379cc1",
                     title: "Les Activitées",
                     Width: "35%",
                     page: "activity",
@@ -78,15 +76,13 @@ const HomeCategories = ({className}) => (
                 },
                 {
                     fluid: data.aboutPicture.childImageSharp.fluid,
-                    backgroundColorDescription: "#1f5831ed",
                     title: "A savoir",
                     Width: "65%",
                     page: "about",
-                    description: "Toutes les choses importante à savoir avant de partir, comme l'interdiction de la cigarette électronique, où échanger sont argent ect…"
+                    description: "Toutes les choses importante à savoir avant de partir, comme l'interdiction de la cigarette électronique, où échanger son argent ect…"
                 },
                 {
                     fluid: data.contactPicture.childImageSharp.fluid,
-                    backgroundColorDescription: "#379cc1",
                     title: "Nous Contacter",
                     Width: "100%",
                     page: "contact",
@@ -119,7 +115,6 @@ const HomeCategories = ({className}) => (
                                             fluid={category.fluid}
                                             alt={category.title}
                                         >
-
                                         </ImgStyled>
                                         <DescriptionBlock className={`box${index}`}>
                                             <h2>{category.title}</h2>
@@ -139,8 +134,6 @@ const HomeCategories = ({className}) => (
 );
 
 const ContainerHomeCategory = styled.div`
-    position: absolute;
-    z-index: -1;
     @media only screen and (min-width:800px) {       
         display: flex;
         flex-direction: row;
@@ -155,8 +148,8 @@ const ContainerHomeCategory = styled.div`
 `;
 
 const ContainerCategory = styled.section`
-    position: relative;
-    @media only screen and (min-width:800px) {       
+    @media only screen and (min-width:800px) {  
+        position: relative;     
         width: ${props => props.width};
         padding: 0 0.25rem 0.5rem 0.25rem;   
     }
@@ -173,7 +166,6 @@ const ImgStyled = styled(Img)`
     `;
 
 const DescriptionBlock = styled.div`
-    position: relative;
     color: ${props => props.theme.color.primary};
     font-family: ${props => props.theme.font.primary};
     letter-spacing: 1px;
@@ -183,14 +175,8 @@ const DescriptionBlock = styled.div`
         > p {
             padding: 1rem 0;
             color: rgb(11,11,11) ;
-            z-index: -1;
-            position: relative;
         }
-        h2 {
-            z-index: -1;
-            position: relative;
-        }
-        
+     
     @media only screen and (min-width:800px) {
     position: absolute;
     padding: 1rem;
@@ -218,8 +204,6 @@ const SeeMoreLink = styled(Link)`
                 text-align: center;
                 transition: all 0.6s linear;
                 padding: 1rem;
-                z-index: -2;
-                position: relative;
                 &:hover {
                     color: ${props => props.theme.color.primary};
                     background-color: ${props => props.theme.color.secondary} ;

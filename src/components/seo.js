@@ -32,7 +32,6 @@ function SEO({description, lang, meta, keywords, title}) {
     const imageSeo = interestPicture.childImageSharp.resize;
     const metaDescription = description || site.siteMetadata.description;
     const image = imageSeo && imageSeo.src ? `${site.siteMetadata.siteUrl}${imageSeo.src}` : null;
-    console.log(imageSeo)
 
     return (
         <Helmet

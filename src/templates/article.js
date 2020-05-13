@@ -9,6 +9,7 @@ import SEO from "../components/seo";
 export default ({data, pageContext}) => {
     const {allFirebaseData} = data;
 
+
     const translatePageName = (namePage) => {
         if (namePage === "activity") {
             return "Les Activités"
@@ -35,8 +36,8 @@ export default ({data, pageContext}) => {
                             <ContainerImg position={index % 2 === 0 ? "left" : "right"}>
                                 <a href={article.urlImage} target="_blank" rel="noopener noreferrer">
                                     <StyledImg position={index % 2 === 0 ? "left" : "right"}
-                                               fluid={article.fileFirebase.childImageSharp.fluid}
-                                               alt={article.articleTitle}/>
+                                               alt={article.articleTitle}
+                                               fluid={article.fileFirebase.childImageSharp.fluid} />
                                 </a>
                             </ContainerImg>
                             <ArticleBody position={index % 2 === 0 ? "left" : "right"}>
@@ -113,9 +114,9 @@ const ContainerImg = styled.div`
         width: 40%;
         align-self: center;
         order: ${props => props.position === "right" ? 1 : 0};
-        transition: transform .7s ease-in-out .7s;      
+        transition: transform .5s ease-in-out .2s;      
         &:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }                        
     }
     `;
@@ -156,8 +157,7 @@ const ArticleBody = styled.div`
     @media only screen and (min-width:800px) {      
         width: 50%;
         align-self: center;
-        background: ${props => props.position === "right" ? "linear-gradient(90deg,rgba(200, 148, 70, 0.6) 0%,rgba(200, 148, 70, 0.3) 50%,rgba(200, 148, 70, 0.1) 100%)" : "linear-gradient(90deg,rgba(200, 148, 70, 0.1) 0%,rgba(200, 148, 70, 0.3) 50%,rgba(200, 148, 70, 0.6) 100%);"};
-        box-shadow: ${props => props.position === "right" ? "-6px 15px 25px 0 rgba(0,0,0,0.3)" : "6px 15px 25px 0 rgba(0,0,0,0.3)"};         
+        box-shadow: ${props => props.position === "right" ? "-2px 2px 5px 1px rgba(0,0,0,0.2)" : "2px 2px 5px 1px  rgba(0,0,0,0.2)"};         
         padding: 1rem;                   
     }
     `;
