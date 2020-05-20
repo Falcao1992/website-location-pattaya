@@ -84,7 +84,7 @@ const HomeCategories = ({className}) => (
                 {
                     fluid: data.contactPicture.childImageSharp.fluid,
                     title: "Nous Contacter",
-                    Width: "100%",
+                    Width: "55%",
                     page: "contact",
                     description: "N'hésitez pas pour nous contacter, nous sommes à votre disposition pour les renseignements complémentaires que vous désireriez au sujet de nos appartements à louer à Pattaya."
                 },
@@ -103,26 +103,46 @@ const HomeCategories = ({className}) => (
                                     reverse={false}
                                 >
                                     <>
-                                    {/*category.page === "contact" &&
-                                        <div>
-                                            <p>saluuuuttt tout le monde</p>
-                                        </div>
-                                    */}
-                                    <ContainerCategory page={category.page} width={category.Width}>
-                                        <ImgStyled
-                                            Tag="div"
-                                            className={className}
-                                            fluid={category.fluid}
-                                            alt={category.title}
-                                        >
-                                        </ImgStyled>
-                                        <DescriptionBlock className={`box${index}`}>
-                                            <h2>{category.title}</h2>
-                                            <p>{category.description}</p>
-                                            <SeeMoreLink to={`/${category.page}`}><p>Découvrir</p></SeeMoreLink>
-                                        </DescriptionBlock>
-                                    </ContainerCategory>
-                                        </>
+                                        {category.page === "contact"
+                                            ?
+                                            <ContainerMapContact>
+                                                <IframeStyled
+                                                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d158443.28959118854!2d100.75294725618774!3d12.902349898070899!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x9ebd0edb7a4e2465!2sAmazon%20Residence!5e1!3m2!1sfr!2sfr!4v1589943736228!5m2!1sfr!2sfr"
+                                                    aria-hidden="false" tabIndex="0"/>
+                                                <ContainerCategory page={category.page} width={category.Width}>
+                                                    <ImgStyled
+                                                        Tag="div"
+                                                        className={className}
+                                                        fluid={category.fluid}
+                                                        alt={category.title}
+                                                        page={category.page}
+                                                    >
+                                                    </ImgStyled>
+                                                    <DescriptionBlock className={`box${index}`}>
+                                                        <h2>{category.title}</h2>
+                                                        <p>{category.description}</p>
+                                                        <SeeMoreLink to={`/${category.page}`}><p>Découvrir</p>
+                                                        </SeeMoreLink>
+                                                    </DescriptionBlock>
+                                                </ContainerCategory>
+                                            </ContainerMapContact>
+                                            :
+                                            <ContainerCategory page={category.page} width={category.Width}>
+                                                <ImgStyled
+                                                    Tag="div"
+                                                    className={className}
+                                                    fluid={category.fluid}
+                                                    alt={category.title}
+                                                >
+                                                </ImgStyled>
+                                                <DescriptionBlock className={`box${index}`}>
+                                                    <h2>{category.title}</h2>
+                                                    <p>{category.description}</p>
+                                                    <SeeMoreLink to={`/${category.page}`}><p>Découvrir</p></SeeMoreLink>
+                                                </DescriptionBlock>
+                                            </ContainerCategory>
+                                        }
+                                    </>
                                 </Scene>
                             </Controller>
                         )
@@ -132,6 +152,32 @@ const HomeCategories = ({className}) => (
         }}
     />
 );
+
+const ContainerMapContact = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    @media only screen and (min-width:800px) {       
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        margin: 5rem 0;
+    }
+`;
+
+const IframeStyled = styled.iframe`
+    width: 100%;
+    padding: 1rem 0;
+    border: 0;
+    height: 50vh;
+    @media only screen and (min-width:800px) {  
+        width: 40%;
+        height: auto;
+        padding: 0;    
+        display: flex;
+        flex-direction: row;
+    }
+`;
 
 const ContainerHomeCategory = styled.div`
     @media only screen and (min-width:800px) {       
@@ -160,7 +206,7 @@ const ImgStyled = styled(Img)`
     align-items: flex-end;
     z-index: -1;  
     @media only screen and (min-width:800px) {           
-        height: 80vh;
+        height: ${props => props.page !== "contact" ? "75vh" : "55vh"};
         overflow: visible;
     }
     `;
@@ -170,7 +216,7 @@ const DescriptionBlock = styled.div`
     font-family: ${props => props.theme.font.primary};
     letter-spacing: 1px;
     padding: 1rem;
-    box-shadow: -10px 20px 25px 0 rgba(0,0,0,0.7);
+
     transition: all 0.6s linear;     
         > p {
             padding: 1rem 0;
