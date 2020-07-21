@@ -2,18 +2,9 @@ require("dotenv").config({
     path: `.env.${process.env.NODE_ENV}`,
 });
 
-const {
-    NODE_ENV,
-    URL: NETLIFY_SITE_URL = 'https://website-pattaya.netlify.app',
-    DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
-    CONTEXT: NETLIFY_ENV = NODE_ENV,
-} = process.env;
 
-const isNetlifyProduction = NETLIFY_ENV === 'production';
-const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
+const siteUrl = 'https://website-pattaya.netlify.app';
 
-console.log(NETLIFY_ENV, "NETLIFY_ENV")
-console.log(NODE_ENV, "NODE_ENV")
 
 module.exports = {
     siteMetadata: {
@@ -29,23 +20,10 @@ module.exports = {
         {
             resolve: 'gatsby-plugin-robots-txt',
             options: {
-                resolveEnv: () => NETLIFY_ENV,
-                env: {
-                    production: {
-                        policy: [{userAgent: '*'}],
-                    },
-                    'branch-deploy': {
-                        policy: [{userAgent: '*', disallow: ['/']}],
-                        sitemap: null,
-                        host: null,
-                    },
-                    'deploy-preview': {
-                        policy: [{userAgent: '*', disallow: ['/']}],
-                        sitemap: null,
-                        host: null,
-                    },
-                },
-            },
+                host: siteUrl,
+                sitemap: siteUrl + '/sitemap.xml',
+                policy: [{userAgent: '*', allow: '/'}]
+            }
         },
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-sitemap`,
@@ -71,7 +49,7 @@ module.exports = {
                 fonts: [
                     {
                         family: `Inknut Antiqua`,
-                        variants: [`300`,`500`, `700`]
+                        variants: [`300`, `500`, `700`]
                     },
                     {
                         family: `Pinyon Script`,
