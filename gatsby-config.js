@@ -12,6 +12,9 @@ const {
 const isNetlifyProduction = NETLIFY_ENV === 'production';
 const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
 
+console.log(NETLIFY_ENV, "NETLIFY_ENV")
+console.log(NODE_ENV, "NODE_ENV")
+
 module.exports = {
     siteMetadata: {
         title: `Location d'Appartements Particulier à Pattaya`,

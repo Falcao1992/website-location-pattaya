@@ -7,7 +7,7 @@ import Header from "../components/Header";
 const SecondPage = () => (
   <Layout>
     <SEO title="Contact" />
-      <Header pathPage={"contact"}/>
+    <Header pathPage={"contact"}/>
     <ContactForm/>
   </Layout>
 );

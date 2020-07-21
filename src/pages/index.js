@@ -4,12 +4,9 @@ import HomeCategories from "../components/HomeCategories";
 import SEO from "../components/seo"
 import Header from "../components/Header";
 
-
 import Metrics from "../components/Metrics";
 
-
 const IndexPage = () => {
-
 
     return (
         <Layout>
